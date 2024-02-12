@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter>
       {showContainer ? (
         <>
-          <Header />
+          <Header  />
           <Container>
             <Routes>
               <Route path="/" element={<Login />} />
@@ -28,7 +28,7 @@ function App() {
         </>
       ) : (
         <Routes>
-          {/* <Route path="/way" element={<Way />} /> */}
+          
           <Route path="/way" element={<Second />} />
         </Routes>
       )}
