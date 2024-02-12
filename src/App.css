@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.fontsi{
+  font-size: 14px !important;
+}
+
+.try{
+  color: #2E59B0;
+  font-size: 50px;
+  font-weight: 300;
+} 
+
+.try_1{
+  color: #1B3365;
+  font-size: 20.5px;
+}
+
+.try_2{
+  color: #1B3365;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.form_bg{
+  background-color: #162647 !important;
+}
+
+.form_bg_1{
+  background-color: #F2F5F8;
+}
+
+.Account{
+  text-decoration: underline;
+}
+
+.signup{
+  color: #F4554E;
+  font-size: 18px;
+}
+
+.try_3{
+  color: #1B3365;
+  font-size: 33px;
+}
+
+.vertical-line {
+  border-left: 1px solid #ccc;
+  height: 100%;
+  margin: 0 15px; 
+}
+
+.text-grey{
+  color: #7C859A;
+  font-size: 13px;
+}
+
+.policy{
+  color: #DA4F4D;
+}
+
+.try_4{
+  color: #162647 !important;
+  font-size: 17px !important;
+}
+
+.signin{
+  background-color: #DA4F4D !important;
+  color: #fffbfb !important;
+  border: 1px solid #DA4F4D !important;
+  text-decoration: none !important;
+}
+
+.forgot{
+  border: 1px solid #9c9da0 !important;
+  text-decoration: none !important;
+  color: #969191 !important;
+}
+
+.font{
+  font-size:13px;
+}
+
+.font_1{
+  font-size:10px;
+}
+
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.bg-sky{
+  background-color: #CFE2FF;
+}
+
+.bg-ld{
+  background-color: #ADB5BD;
+}
+
+.map {
+  width:275px !important;
+  height: 175px;
+  background-color: #9c9da0;
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .map {
+    width: 350px !important;
+    height: 190px;
+    color: #1B3365;
+    background-color: #9c9da0;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .map {
+    width: 250px !important;
+    height: 190px;
+    color: #1B3365;
+    background-color: #9c9da0;
+  }
+}
