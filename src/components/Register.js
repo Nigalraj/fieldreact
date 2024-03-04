@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Icon } from '@iconify/react';
+import axios from 'axios';
 import Faqs from './Faq';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function Register() {
     
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    companyName: '',
-    phone: '',
-    password: '',
+    Firstname: '',
+    Lastname: '',
+    Email: '',
+    Companyname: '',
+    PhoneNumber: '',
+    Password: '',
     confirmPassword: '',
     timeZone: '',
     address: '',    
@@ -28,10 +31,11 @@ function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (showAdditionalFields) {
-      console.log(formData);
+      const response = await axios.post('http://localhost:3002/api/users', formData);
+      console.log(response.data,"hi");
     } else {
       setShowAdditionalFields(true);
     }
@@ -45,7 +49,7 @@ function Register() {
           </div>
         </div>
         <div className=' mt-5'>
-          <div className='row mx-md-5 '>
+          <div className='row mx-md-5'>
           <div className='form_bg col-12 col-md-5 px-4 px-md-5'>
           <Form onSubmit={handleSubmit} className='text-white py-3'>
             <span className='Account fs-5 fw-bold'> Account Info</span>
@@ -53,8 +57,8 @@ function Register() {
               <Form.Label>First Name*</Form.Label>
                 <Form.Control
                  type="text"
-                 name="firstName"
-                 value={formData.firstName}
+                 name="Firstname"
+                 value={formData.Firstname}
                  onChange={handleChange}
                 />
             </Form.Group>
@@ -62,8 +66,8 @@ function Register() {
               <Form.Label>Last Name*</Form.Label>
                <Form.Control
                  type="text"
-                 name="lastName"
-                 value={formData.lastName}
+                 name="Lastname"
+                 value={formData.Lastname}
                  onChange={handleChange}
                 />
             </Form.Group>
@@ -71,8 +75,8 @@ function Register() {
              <Form.Label>Company Name*</Form.Label>
               <Form.Control
                  type="text" 
-                 name="companyName"
-                 value={formData.companyName}
+                 name="Companyname"
+                 value={formData.Companyname}
                  onChange={handleChange}
               />
             </Form.Group>
@@ -80,8 +84,8 @@ function Register() {
              <Form.Label>Email*</Form.Label>
               <Form.Control
                 type="email"
-                name="email"
-                value={formData.email}
+                name="Email"
+                value={formData.Email}
                 onChange={handleChange}
               />
               </Form.Group>
@@ -89,8 +93,8 @@ function Register() {
              <Form.Label>Phone number*</Form.Label>
               <Form.Control
                 type="tel"
-                name="phone"
-                value={formData.phone}
+                name="PhoneNumber"
+                value={formData.PhoneNumber}
                 onChange={handleChange}
               />
              </Form.Group>
@@ -99,8 +103,8 @@ function Register() {
         <Form.Control
           type="password"
           placeholder="Enter your password"
-          name="password"
-          value={formData.password}
+          name="Password"
+          value={formData.Password}
           onChange={handleChange}
         />
              </Form.Group>

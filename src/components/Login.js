@@ -1,59 +1,78 @@
 import React, { useState } from "react";
 import { Form, Button, FormGroup, FormCheck, Row, Col } from "react-bootstrap";
-import { Icon } from "@iconify/react";
-import Faqs from "./Faq";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function Login() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const formik = useFormik({
+    initialValues: {
+      Email: "",
+      Password: "",
+      rememberMe: false,
+    },
+    validationSchema: Yup.object({
+      Email: Yup.string().email("Invalid email address").required("Required"),
+      Password: Yup.string().required("Required"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post('http://localhost:3002/api/users/login', values);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    window.location.href="/way";
-  };
+        const { accessToken, refreshToken } = response.data;
+
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
+        window.location.href = "/dashboard";
+      } catch (error) {
+        console.error('Login failed:', error.response.data.error);
+      }
+    },
+  });
+
   return (
     <div>
       <div className=" mt-5">
         <div className="row mx-md-5 ">
           <div className="form_bg col-12 col-md-5 px-4 px-md-5">
-            <Form onSubmit={handleSubmit} className="text-white py-3">
+          <Form onSubmit={formik.handleSubmit} className="text-white py-3">
               <span className="Account fs-5 fw-bold"> SIGN IN</span>
-              <Form.Group controlId="email">
+              <Form.Group controlId="Email">
                 <Form.Label>Email*</Form.Label>
                 <Form.Control
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  name="Email"
+                  value={formik.values.Email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.touched.Email && formik.errors.Email ? (
+                  <div className="error">{formik.errors.Email}</div>
+                ) : null}
               </Form.Group>
-              <Form.Group controlId="password">
+              <Form.Group controlId="Password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  name="Password"
+                  value={formik.values.Password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
+                {formik.touched.Password && formik.errors.Password ? (
+                  <div className="error">{formik.errors.Password}</div>
+                ) : null}
               </Form.Group>
               <FormGroup controlId="rememberMe" className="mb-3 mt-3">
                 <FormCheck
                   type="checkbox"
                   label="Remember Me"
                   name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleChange}
+                  checked={formik.values.rememberMe}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
               </FormGroup>
               <Row className="mb-3">
@@ -63,11 +82,9 @@ function Login() {
                   </Button>
                 </Col>
                 <Col>
-                  <Link to="v" className="signin py-2 px-5">
-                    <Button type="submit" onClick={(e)=>handleSubmit(e)}>
-                      Sign In
-                    </Button>
-                  </Link>
+                  <Button type="submit" className="signin py-2 px-5">
+                    Sign In
+                  </Button>
                 </Col>
               </Row>
             </Form>
@@ -86,6 +103,7 @@ function Login() {
                 "Create New Account" button below to get started
               </span>
             </div>
+            <Link to="/register">
             <Button
               variant="primary"
               type="submit"
@@ -93,6 +111,7 @@ function Login() {
             >
               Create New Account
             </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -114,11 +133,15 @@ function Login() {
               <div className="vertical-line"></div>
             </div>
             <div className="d-flex">
-              <div className="try_1">LOGIN</div>
+              <Link to="/" className="text-decoration-none">
+                <div className="try_1 text-decoration-none">LOGIN</div>
+              </Link>
               <div className="vertical-line"></div>
             </div>
             <div className="d-flex">
-              <div className="try_1">SIGN UP</div>
+              <Link to="/register" className="text-decoration-none">
+                <div className="try_1 ">REGISTER</div>
+              </Link>
               <div className="vertical-line"></div>
             </div>
           </div>

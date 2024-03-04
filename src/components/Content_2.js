@@ -82,7 +82,7 @@ function Content_2() {
                 <span className='me-2'><Icon icon="fa-regular:edit"/></span>
               </td>
             </tr>
-            <tr className='border '>
+            <tr className='border'>
               <td className='border ps-4' style={{ width: '200px' }}>Project Manager</td>
               <td className=' d-flex justify-content-between' style={{ width: '200px' }}>
                 <span className='ms-3'>Test Company</span>

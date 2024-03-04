@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import logoImage from '../Asset/logo.png';
 import { Icon } from '@iconify/react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [isNavOpen, setNavOpen] = useState(false);
@@ -28,7 +29,7 @@ function Header() {
 
 
   return (
-    <>
+    <div className='container'>
       <Navbar expand="lg" className=" bg-white d-lg-none">
       <Container fluid>
         <Navbar.Brand href="#" className='me-0'>
@@ -77,7 +78,7 @@ function Header() {
       </Container>
     </Navbar>
     <div className='d-none d-lg-inline-flex'>
-      <div className=''>
+      <div className='py-3'>
          <div className='d-flex my-4'>
          <div className='mx-0'>
            <img
@@ -124,14 +125,14 @@ function Header() {
             <div className='d-flex justify-content-between'>
               <span className='mx-5'>FAQS</span>
               <span>CONTACT US</span>
-              <span className='mx-5'>LOGIN</span>
-              <span>SIGN UP</span>
+              <Link to="/" className='mx-5 bg-success text-white px-3 py-1 rounded-5 text-decoration-none text-dark'>LOGIN</Link>
+              <Link to="/register" className='bg-success px-3 text-white py-1 rounded-5 text-decoration-none text-dark'>SIGN UP</Link>
             </div>
           </div>
          </div>
         </div>
     </div>
-    </>
+    </div>
   );
 }
 

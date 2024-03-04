@@ -4,9 +4,7 @@ import Content_2 from "./Content_2";
 
 function Sidebar() {
   return (
-    <div className="d-none d-lg-block">
-        <div className="row mx-0  ">
-      <div className="col-1 bg-light font ">
+    <div className="  font ">
         <div className="d-flex flex-column py-2 mx-1">
           <Icon icon="clarity:tasks-line" className="mx-3" width="40" height="35"/>
           <span className="text-center">Tasks</span>
@@ -36,11 +34,6 @@ function Sidebar() {
           <span className="text-center">Super Admin</span>
         </div>
       </div>
-      <div className="col-11">
-        <Content_2/>
-      </div>
-    </div>
-    </div>
   );
 }
 

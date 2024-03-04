@@ -95,7 +95,6 @@ function Header_2() {
            <span>Inventory <Icon icon="gridicons:dropdown" /></span>
            <span className="mx-3">Dispatcher <Icon icon="gridicons:dropdown" /> </span>
         </div>
-        <Content_2/>
       </div>
     </div>
   );

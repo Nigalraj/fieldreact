@@ -1,23 +1,28 @@
 import Header from "./components/Header";
 import "./App.css";
 import { Container } from "react-bootstrap";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Registers from "./components/Register";
 import Login from "./components/Login";
 import Second from "./components/second";
+import Header_2 from "./components/Header_2";
+import Sidebar from "./components/Sidebar";
+import { Row, Col } from "react-bootstrap";
+import Lead from "./components/Lead";
+import Error from "./components/Error";
 
 function App() {
   const currentPath = window.location.pathname;
   console.log(currentPath, "path");
 
-  const showContainer = currentPath === '/' || currentPath === '/register';
+  const showContainer = currentPath === "/" || currentPath === "/register";
 
   return (
     <BrowserRouter>
       {showContainer ? (
         <>
-          <Header  />
+          <Header />
           <Container>
             <Routes>
               <Route path="/" element={<Login />} />
@@ -27,11 +32,25 @@ function App() {
           <Footer />
         </>
       ) : (
-        <Routes>
-          
-          <Route path="/way" element={<Second />} />
-        </Routes>
+        <>
+          <Header_2 />
+          <Row className="mx-0 ">
+            <Col md={2} lg={1} className="d-none bg-light d-md-flex ">
+              <Sidebar />
+            </Col>
+            <Col md={10} lg={11} className="px-0">
+              <Routes>
+                <Route path="/dashboard" element={<Second />} />
+                <Route path="/start" element={<Lead />} />
+                <Route path="/add" element={<Lead />} />
+              </Routes>
+            </Col>
+          </Row>
+        </>
       )}
+      <Routes>
+      <Route path="*" element={<Error />} />
+      </Routes>
     </BrowserRouter>
   );
 }
