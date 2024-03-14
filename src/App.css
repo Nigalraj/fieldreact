@@ -120,3 +120,21 @@ div.scrollmenu {
     background-color: #9c9da0;
   }
 }
+
+.btn-sky{
+  background-color: #2E59B0;
+  color: white !important;
+}
+
+.grey{
+  background-color: rgb(235, 230, 230);
+}
+
+.bg-estimate{
+  background-color: #CFE2FF;
+}
+
+.bg-approved{
+  background-color: #AEB5BD;
+}
+

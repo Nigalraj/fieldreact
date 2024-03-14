@@ -21,7 +21,6 @@ function Login() {
         const response = await axios.post('http://localhost:3002/api/users/login', values);
 
         const { accessToken, refreshToken } = response.data;
-
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 

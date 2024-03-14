@@ -3,49 +3,166 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Offcanvasop from "./Offcanvas";
-import Content_1 from "./Content_1";
-import Content_2 from "./Content_2";
+
+import { Link } from 'react-router-dom';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function Header_2() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+ 
 
   return (
     <div>
       <div className="bg-primary font text-white mt-1 d-none d-lg-block m-0">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
-            <span className="px-xl-3 py-3 ps-lg-2 ps-xl-3">FIELD GROOVC</span>
-            <span className="py-xl-3 ps-3">Leads</span>
-            <span className="px-3 py-3">Opportunities</span>
-            <span className="py-3">Jobs</span>
-            <div className="ps-3 py-3">
-              <span>
-                Accounting <Icon icon="gridicons:dropdown" />
-              </span>
+            <span className="px-xl-3 fs-6 py-3 ps-lg-2 ps-xl-3">FIELD GROOVC</span>
+            <span className="py-xl-3 fs-6 ps-3">Leads</span>
+            <Link to="/opportunity" className="text-decoration-none">
+              <span className="px-3 text-white  fs-6 py-3">Opportunities</span>
+            </Link>
+            <span className="py-3 fs-6">Jobs</span>
+            <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Accounting
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div className="ps-3 py-3">
-              <span>
-                Coustmers <Icon icon="gridicons:dropdown" />
-              </span>
+            <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Coustmers
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div className="ps-3 py-3">
-              <span>
-                Inventory <Icon icon="gridicons:dropdown" />
-              </span>
+            <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Inventory 
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div className="ps-3 py-3">
-              <span>
-                Dispatcher <Icon icon="gridicons:dropdown" />
-              </span>
+            <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                 Dispatcher
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="d-flex align-items-center">
-            <div>
-              <Icon icon="gridicons:dropdown" />
-              <span>ABINGTON</span>
+          <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                 ABINGTON
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
             </div>
             <div className="mx-2 mx-xl-3">
               <input
@@ -74,26 +191,157 @@ function Header_2() {
             <Offcanvas.Title>FieldGroove</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Offcanvasop/>
+            <Offcanvasop />
           </Offcanvas.Body>
         </Offcanvas>
         <div className="bg-primary px-3">
-        <input
-                type="text"
-                id="input"
-                class="form-control rounded-5 custom-size"
-                placeholder="Search"
-                aria-describedby="passwordHelpInline"
-              />
+          <input
+            type="text"
+            id="input"
+            class="form-control rounded-5 custom-size"
+            placeholder="Search"
+            aria-describedby="passwordHelpInline"
+          />
         </div>
-        <div class="scrollmenu bg-primary text-white py-3">
-           <span className="mx-3">Leads</span>
-           <span>Opportunities</span>
-           <span className="mx-3">Jobs</span>
-           <span>Accounting <Icon icon="gridicons:dropdown" /></span>
-           <span className="mx-3">Coustmers <Icon icon="gridicons:dropdown" /></span>
-           <span>Inventory <Icon icon="gridicons:dropdown" /></span>
-           <span className="mx-3">Dispatcher <Icon icon="gridicons:dropdown" /> </span>
+        <div class="scrollmenu bg-primary d-flex text-white py-3">
+          <div className="mt-2"><span className="mx-3">Leads</span></div>
+          <div className="mt-2"><span>Opportunities</span></div>
+          <div className="mt-2"><span className="mx-3">Jobs</span></div>
+          <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Accounting
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+          </div>
+          <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Coustmers 
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+          </div>
+          <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                 Inventory 
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+          </div>
+          <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Accounting
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+          </div>
+          <div class="dropdown">
+              <button
+                class="btn btn-sky border-0 dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                 Dispatcher
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Another action
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    Something else here
+                  </a>
+                </li>
+              </ul>
+          </div>
         </div>
       </div>
     </div>

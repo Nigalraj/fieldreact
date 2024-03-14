@@ -11,6 +11,9 @@ import Sidebar from "./components/Sidebar";
 import { Row, Col } from "react-bootstrap";
 import Lead from "./components/Lead";
 import Error from "./components/Error";
+import Calendar from "./components/Calender";
+import Opportunity from "./components/Opportunity";
+import Customer from "./components/Customer";
 
 function App() {
   const currentPath = window.location.pathname;
@@ -34,23 +37,24 @@ function App() {
       ) : (
         <>
           <Header_2 />
-          <Row className="mx-0 ">
-            <Col md={2} lg={1} className="d-none bg-light d-md-flex ">
+          <Row className="mx-0">
+            <Col md={1} lg={1} className="d-none bg-light d-md-inline-flex px-0">
               <Sidebar />
             </Col>
-            <Col md={10} lg={11} className="px-0">
+            <Col md={11} lg={11} className="px-0">
               <Routes>
                 <Route path="/dashboard" element={<Second />} />
                 <Route path="/start" element={<Lead />} />
                 <Route path="/add" element={<Lead />} />
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/opportunity" element={<Opportunity/>}/>
+                <Route path="/projects" element={<Customer/>}/>
               </Routes>
             </Col>
           </Row>
         </>
       )}
-      <Routes>
-      <Route path="*" element={<Error />} />
-      </Routes>
+     
     </BrowserRouter>
   );
 }
