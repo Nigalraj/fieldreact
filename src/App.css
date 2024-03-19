@@ -138,3 +138,34 @@ div.scrollmenu {
   background-color: #AEB5BD;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+th {
+  min-width: 150px;
+}
+
+.model-height{
+  height: 350px;
+}
+
+.bg-grey{
+  background-color: grey;
+}
+
+
+.active1 {
+  background-color: #007bff; 
+  color: #fff; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  margin: 0 5px; 
+}
+
+.inactive{
+  background-color: #c6c1c1;
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  margin: 0 5px; 
+}

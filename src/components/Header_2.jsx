@@ -21,12 +21,12 @@ function Header_2() {
       <div className="bg-primary font text-white mt-1 d-none d-lg-block m-0">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
-            <span className="px-xl-3 fs-6 py-3 ps-lg-2 ps-xl-3">FIELD GROOVC</span>
-            <span className="py-xl-3 fs-6 ps-3">Leads</span>
+            <Link to="/dashboard" className="px-xl-3 fs-6 py-3 ps-lg-2 ps-xl-3 text-decoration-none text-white">FIELD GROOVC</Link>
+            <Link to="/leads" className="text-decoration-none"><span className="py-xl-3 fs-6 ps-3 text-white">Leads</span></Link>
             <Link to="/opportunity" className="text-decoration-none">
               <span className="px-3 text-white  fs-6 py-3">Opportunities</span>
             </Link>
-            <span className="py-3 fs-6">Jobs</span>
+            <Link to="/jobs" className="text-decoration-none"><span className="py-3 text-white fs-6">Jobs</span></Link>
             <div class="dropdown">
               <button
                 class="btn btn-sky border-0 dropdown-toggle"

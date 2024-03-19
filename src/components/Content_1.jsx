@@ -1,7 +1,11 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
 function Content() {
-
+  const dropdownItems = [
+    "Action",
+    "Another action",
+    "Something else"
+  ];
     const data = [
         {   Customer: "TestCompany", WO: 'Mark', ProjectName: "Otto" , SiteAddress: "Otto",Type: "Otto",Status: "Otto",Start_Date: "Otto", Sale_Person: "Otto",Contact: "Otto" },
       ];
@@ -9,23 +13,20 @@ function Content() {
   return (
     <>
       <div className="d-flex justify-content-between mt-2 mx-2 mx-lg-0 align-items-center font">
-        <div>
-          <span className="fw-semibold">Jobs</span>
-        </div>
+        {/* <div>
+          <span className="fw-semibold">Jofbs</span>
+        </div> */}
         <div className="">
-          <Dropdown>
-            <Dropdown.Toggle
-              id="dropdown-basic"
-              className="bg-light text-dark border-light"
-            >
-              View jobs Needing
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+        <Dropdown>
+  <Dropdown.Toggle id="dropdown-basic" className="bg-light text-dark border-light">
+    View jobs Needing
+  </Dropdown.Toggle>
+  <Dropdown.Menu>
+    {dropdownItems.map((item, index) => (
+      <Dropdown.Item key={index} href={`#/action-${index + 1}`}>{item}</Dropdown.Item>
+    ))}
+  </Dropdown.Menu>
+</Dropdown>
         </div>
       </div>
       <hr className="my-2" />

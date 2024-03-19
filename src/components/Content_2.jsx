@@ -2,20 +2,24 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 
 function Content_2() {
-    
+    const buttons = [
+  { text: 'Close', variant: 'primary' },
+  { text: 'Duplicate', variant: 'success' },
+  { text: 'Archive', variant: 'danger' }
+];
   return (
     <>
       <div className='font'>
       <div className='d-flex justify-content-between mt-2 ms-2 ms-md-0'>
-        <div>
-            <span>Test</span>
-        </div>
-        <div className='text-white '>
-            <span className='bg-primary p-1 rounded-3'>Close</span>
-            <span className='bg-success mx-2 p-1 rounded-3'>Duplicate</span>
-            <span className='bg-danger p-1 rounded-3'>Archive</span>
-        </div>
-      </div>                        
+  <div>
+    <span>Test</span>
+  </div>
+  <div className='text-white'>
+    {buttons.map((button, index) => (
+      <span key={index} className={`bg-${button.variant} mx-2 p-1 rounded-3`}>{button.text}</span>
+    ))}
+  </div>
+</div>            
       <hr className='my-2 '/>
       <div className='ms-3 ms-md-0'>
         <span>Opportunity</span>
