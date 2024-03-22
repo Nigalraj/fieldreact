@@ -1,14 +1,13 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import Button from "react-bootstrap/Button";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import headers from "../utils/data";
 
 function Leads() {
   const [data, setData] = useState([]);
-  const [boolean, setBoolean] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [buttontext,setBottonText]=useState(true);
 
@@ -21,16 +20,12 @@ function Leads() {
       setBottonText(true)
       opportunit_y();
     }
-   
-   
   }
 
     const opportunit_y =()=>{
       axios
       .get("http://localhost:3002/api/opportunity", {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxMDg0NTY5NCwiZXhwIjoxNzEwODY3Mjk0fQ.PKAAs5OR9b9HTr4dty5Ylicx6wwNFB-96io8gx5Gjdo`,
-        },
+        headers: headers
       })
       .then((response) => {
         console.log(response.data);
@@ -53,9 +48,7 @@ function Leads() {
   const opportunity=()=>{
       axios
       .get("http://localhost:3002/api/opportunity", {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxMDg0NTY5NCwiZXhwIjoxNzEwODY3Mjk0fQ.PKAAs5OR9b9HTr4dty5Ylicx6wwNFB-96io8gx5Gjdo`,
-        },
+        headers: headers
       })
       .then((response) => {
         const form = response.data.filter(({ IsCustomer }) => IsCustomer === true) 
@@ -150,7 +143,7 @@ useEffect(()=>{
   };
 
   const Addleads = () => {
-    navigate("/add");
+    navigate("/dashboard/start");
   };
 
   return (
@@ -316,14 +309,12 @@ useEffect(()=>{
           <tbody>
             {currentItemsOnPage?.map((item, index) => (
               <tr key={index}>
-                <td>
-                  <Link to={`/projects`}>{item.projectName}</Link>
-                </td>
-                <td>{item.Name}</td>
+                <td>james</td>
                 <td>{item.ProjectName}</td>
                 <td>{item.Status}</td>
-                <td>james</td>
+                <td>12-04-2023</td>
                 <td>{item.Phone}</td>
+                <td>In progress</td>
                 <td>rtg</td>
                 <td>{item.BidDate}</td>
                 <td>j</td>

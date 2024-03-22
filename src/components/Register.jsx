@@ -1,47 +1,72 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 import { Icon } from '@iconify/react';
 import axios from 'axios';
 import Faqs from './Faq';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import Footer from './Footer';
+import Header from './Header';
+import Swal from "sweetalert2";
 
 function Register() {
     
-  const [formData, setFormData] = useState({
-    Firstname: '',
-    Lastname: '',
-    Email: '',
-    Companyname: '',
-    PhoneNumber: '',
-    Password: '',
-    confirmPassword: '',
-    timeZone: '',
-    address: '',    
-    state: '',          
-    country: '',   
+  const validationSchema = Yup.object().shape({
+    Firstname: Yup.string().required("First Name is required"),
+    Lastname: Yup.string().required("Last Name is required"),
+    Email: Yup.string().email("Invalid email").required("Email is required"),
+    Companyname: Yup.string().required("Company Name is required"),
+    PhoneNumber: Yup.string().required("Phone Number is required"),
+    Password: Yup.string().required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('Password'), null], 'Passwords must match')
+      .required('Confirm Password is required'),
+    timeZone: Yup.string(),
+    address:Yup.string().required("Address is required"),
+    state:Yup.string().required("State is required"),
+    country: Yup.string().required("Country is required")
   });
 
-  const [showAdditionalFields, setShowAdditionalFields] = useState(false);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const formik = useFormik({
+    initialValues: {
+      Firstname: '',
+      Lastname: '',
+      Email: '',
+      Companyname: '',
+      PhoneNumber: '',
+      Password: '',
+      confirmPassword: '',
+      timeZone: '',
+      address: '',
+      state: '',
+      country: '',
+      showAdditionalFields: false,
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+       
+          const response = await axios.post('http://localhost:3002/api/users', values);
+          console.log(response,"hi");
+          await Swal.fire({
+            icon: "success",
+            title: "Oops...",
+            text: "Registered Successfully",
+            confirmButtonText: "Click login Page",
+          });
+          window.location.href="/"
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (showAdditionalFields) {
-      const response = await axios.post('http://localhost:3002/api/users', formData);
-      console.log(response.data,"hi");
-    } else {
-      setShowAdditionalFields(true);
-    }
-  };
-
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
     return (
+      <>
+    <Header />
+    <Container>
       <div >
         <div className="text-center mt-5">
           <div>
@@ -51,52 +76,73 @@ function Register() {
         <div className=' mt-5'>
           <div className='row mx-md-5'>
           <div className='form_bg col-12 col-md-5 px-4 px-md-5'>
-          <Form onSubmit={handleSubmit} className='text-white py-3'>
+          <Form onSubmit={formik.handleSubmit} className='text-white py-3'>
             <span className='Account fs-5 fw-bold'> Account Info</span>
             <Form.Group controlId="firstName">
               <Form.Label>First Name*</Form.Label>
                 <Form.Control
                  type="text"
                  name="Firstname"
-                 value={formData.Firstname}
-                 onChange={handleChange}
+                 value={formik.values.Firstname}
+                 onChange={formik.handleChange}
+                 onBlur={formik.handleBlur}
                 />
+                {formik.touched.Firstname && formik.errors.Firstname ? (
+                      <div className="error text-danger my-2">{formik.errors.Firstname}</div>
+                    ) : null}
             </Form.Group>
             <Form.Group controlId="lastName">
               <Form.Label>Last Name*</Form.Label>
                <Form.Control
                  type="text"
                  name="Lastname"
-                 value={formData.Lastname}
-                 onChange={handleChange}
+                 value={formik.values.Lastname}
+                 onChange={formik.handleChange}
+                 onBlur={formik.handleBlur}
                 />
+                {formik.touched.Lastname && formik.errors.Lastname ? (
+                      <div className="error text-danger my-2">{formik.errors.Lastname}</div>
+                    ) : null}
             </Form.Group>
             <Form.Group controlId="companyName">
              <Form.Label>Company Name*</Form.Label>
               <Form.Control
                  type="text" 
                  name="Companyname"
-                 value={formData.Companyname}
-                 onChange={handleChange}
+                 value={formik.values.Companyname}
+                 onChange={formik.handleChange}
+                 onBlur={formik.handleBlur}
               />
+               {formik.touched.Companyname && formik.errors.Companyname ? (
+                      <div className="error text-danger my-2">{formik.errors.Companyname}</div>
+                    ) : null}
             </Form.Group>
             <Form.Group controlId="email">
              <Form.Label>Email*</Form.Label>
               <Form.Control
                 type="email"
                 name="Email"
-                value={formData.Email}
-                onChange={handleChange}
+                value={formik.values.Email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
+                                  {formik.touched.Email && formik.errors.Email ? (
+                      <div className="error text-danger my-2">{formik.errors.Email}</div>
+                    ) : null}
+
               </Form.Group>
             <Form.Group controlId="phone">
              <Form.Label>Phone number*</Form.Label>
               <Form.Control
                 type="tel"
                 name="PhoneNumber"
-                value={formData.PhoneNumber}
-                onChange={handleChange}
+                value={formik.values.PhoneNumber}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
+              {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
+                      <div className="error text-danger my-2">{formik.errors.PhoneNumber}</div>
+                    ) : null}
              </Form.Group>
              <Form.Group controlId="password">
         <Form.Label>Password</Form.Label>
@@ -104,9 +150,13 @@ function Register() {
           type="password"
           placeholder="Enter your password"
           name="Password"
-          value={formData.Password}
-          onChange={handleChange}
+          value={formik.values.Password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
+         {formik.touched.Password && formik.errors.Password ? (
+                      <div className="error text-danger my-2">{formik.errors.Password}</div>
+                    ) : null}
              </Form.Group>
              <Form.Group controlId="confirmPassword">
         <Form.Label>Confirm Password</Form.Label>
@@ -114,17 +164,22 @@ function Register() {
           type="password"
           placeholder="Confirm your password"
           name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
         />
-             </Form.Group>
+        {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+    <div className="error text-danger my-2">{formik.errors.confirmPassword}</div>
+  ) : null}
+             
             <Form.Group controlId="jobTitle">
               <Form.Label>How did you hear about us?*</Form.Label>
                 <Form.Control
                     as="select"
                     name="jobTitle"
-                    value={formData.jobTitle}
-                    onChange={handleChange}
+                    value={formik.values.jobTitle}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                 >
                     <option value="" disabled>Please Select</option>
                     <option value="referrel">Central Standard Time</option>
@@ -133,40 +188,63 @@ function Register() {
                     <option value="web search">Pacific Standard Time</option>
                 </Form.Control>
             </Form.Group>
-            {showAdditionalFields && (
+            </Form.Group>
+             <Form.Group controlId="showAdditionalFields">
+                    <Form.Check
+                      type="checkbox"
+                      label="Show Additional Fields"
+                      name="showAdditionalFields"
+                      checked={formik.values.showAdditionalFields}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                    />
+                  </Form.Group>
+            {formik.values.showAdditionalFields && (
                 <>
                   <Form.Group controlId="address">
                     <Form.Label>Address*</Form.Label>
                     <Form.Control
                       type="text"
                       name="address"
-                      value={formData.address}
-                      onChange={handleChange}
+                      value={formik.values.address}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
+                     {formik.touched.address && formik.errors.address ? (
+                          <div className="error text-danger my-2">{formik.errors.address}</div>
+                        ) : null}
                   </Form.Group>
                   <Form.Group controlId="state">
                     <Form.Label>State*</Form.Label>
                     <Form.Control
                       type="text"
                       name="state"
-                      value={formData.state}
-                      onChange={handleChange}
+                      value={formik.values.state}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
+                       {formik.touched.state && formik.errors.state ? (
+                          <div className="error text-danger my-2">{formik.errors.state}</div>
+                        ) : null}
                   </Form.Group>
                   <Form.Group controlId="country">
                     <Form.Label>Country*</Form.Label>
                     <Form.Control
                       type="text"
                       name="country"
-                      value={formData.country}
-                      onChange={handleChange}
+                      value={formik.values.country}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
                     />
+                    {formik.touched.country && formik.errors.country ? (
+                          <div className="error text-danger my-2">{formik.errors.country}</div>
+                        ) : null}
                   </Form.Group>
                 </>
               )}
               <div className='d-flex justify-content-end mt-4 mb-3'>
                 <Button variant="primary" type="submit" className=''>
-                    {showAdditionalFields ? 'Submit' : 'Next'}
+                    {formik.values.showAdditionalFields ? 'Submit' : 'Next'}
                 </Button>
               </div>
           </Form>
@@ -243,6 +321,9 @@ function Register() {
         </div>
         <Faqs/>
       </div>
+      </Container>
+    <Footer/> 
+    </>
     );
   }
   

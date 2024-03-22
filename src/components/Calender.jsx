@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import axios from 'axios';
+import headers from '../utils/data';
 
 function MyApp() {
   const [events, setEvents] = useState([]);
@@ -9,9 +10,7 @@ function MyApp() {
   useEffect(() => {
  
     axios.get('http://localhost:3002/api/calender', {
-      headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTcxMDczODcyMywiZXhwIjoxNzEwODI1MTIzfQ.iYot3QmgpcgYLQN7KECzjn4utb1yw0HCPMf1m-Z5pHI`
-      }
+      headers:headers
     }).then(response => {
        const form = response.data.map(({ StartTime, EndTime, Title }) => ({
           start: StartTime,

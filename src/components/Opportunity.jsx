@@ -5,6 +5,7 @@ import CreateOpportunity from "./Createopportunity";
 import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import headers from "../utils/data";
 
 function MyApp() {
   
@@ -13,9 +14,7 @@ function MyApp() {
 
   useEffect(() => {
     axios.get('http://localhost:3002/api/opportunity',{
-      headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxMDg0NTY5NCwiZXhwIjoxNzEwODY3Mjk0fQ.PKAAs5OR9b9HTr4dty5Ylicx6wwNFB-96io8gx5Gjdo`
-      }
+      headers: headers
     })
       .then(response => 
         {

@@ -1,63 +1,39 @@
-import Header from "./components/Header";
 import "./App.css";
-import { Container } from "react-bootstrap";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import Footer from "./components/Footer";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import Registers from "./components/Register";
 import Login from "./components/Login";
 import Second from "./components/second";
-import Header_2 from "./components/Header_2";
-import Sidebar from "./components/Sidebar";
-import { Row, Col } from "react-bootstrap";
 import Lead from "./components/Lead";
 import Calendar from "./components/Calender";
 import Opportunity from "./components/Opportunity";
 import Customer from "./components/Customer";
 import Leads from "./components/Leads";
 import Jobs from "./components/Jobs";
+import React, { useState } from "react";
+import PrivateRoute from "./Router/PrivateRoute";
+import Layout from "./Layout";
 
 function App() {
-  const currentPath = window.location.pathname;
-  console.log(currentPath, "path");
+  const access = localStorage.getItem("accessToken");
 
-  const showContainer = currentPath === "/" || currentPath === "/register";
-
+  const [isSignedIn, setIsSignedIn] = useState(access !== null);
+ 
   return (
     <BrowserRouter>
-      {showContainer ? (
-        <>
-          <Header />
-          <Container>
-            <Routes>
-            <Route path="/" element={<Login />}/>
-              <Route path="/register" element={<Registers/>}/>
-            </Routes>
-          </Container>
-          <Footer />
-        </>
-      ) : (
-        <>
-          <Header_2 />
-          <Row className="mx-0">
-            <Col md={1} lg={1} className="d-none bg-light d-md-inline-flex px-0">
-              <Sidebar />
-            </Col>
-            <Col md={11} lg={11} className="px-0">
-              <Routes>
-              <Route path="/dashboard" element={<Second />} />
-                <Route path="/start" element={<Lead />} />
-                <Route path="/add" element={<Lead />} />
-                <Route path="/jobs" element={<Jobs/>}/>
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/opportunity" element={<Opportunity/>}/>
-                <Route path="/leads" element={<Leads/>}/>
-                <Route path="/projects" element={<Customer/>}/>
-              </Routes>
-            </Col>
-          </Row>
-        </>
-      )}
-     
+      <Routes>
+        <Route path="/" element={<Login setIsSignedIn={setIsSignedIn} />} />
+        <Route path="/register" element={<Registers />} />
+        <Route path="/register" element={<Registers />} />
+        <Route path="/dashboard" element={<Layout />}>
+          <Route path="/dashboard" element={<PrivateRoute isSignedIn={isSignedIn}><Second /></PrivateRoute>} />
+          <Route path="/dashboard/start" element={<PrivateRoute isSignedIn={isSignedIn}><Lead /></PrivateRoute>} />
+          <Route path="/dashboard/jobs" element={<PrivateRoute isSignedIn={isSignedIn}><Jobs /></PrivateRoute>} />
+          <Route path="/dashboard/calendar" element={<PrivateRoute isSignedIn={isSignedIn}><Calendar/></PrivateRoute>} />
+          <Route path="/dashboard/opportunity" element={<PrivateRoute isSignedIn={isSignedIn}><Opportunity/></PrivateRoute>} />
+          <Route path="/dashboard/leads" element={<PrivateRoute isSignedIn={isSignedIn}><Leads /></PrivateRoute>} />
+          <Route path="/dashboard/projects" element={<PrivateRoute isSignedIn={isSignedIn}><Customer /></PrivateRoute>} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

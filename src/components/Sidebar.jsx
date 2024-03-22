@@ -1,18 +1,15 @@
 import { Icon } from '@iconify/react';
-import Content_1 from "./Content_1";
-import Content_2 from "./Content_2";
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
   return (
-    
     <div className="ms-0 w-100">
         <div className="d-flex flex-column py-2 align-items-center">
           <Icon icon="clarity:tasks-line" className="" width="40" height="35"/>
           <span className="text-center">Tasks</span>
       </div>
       <div className="d-flex flex-column  py-2  align-items-center mx-1">
-      <Link to="/calendar" className="d-flex text-dark flex-column align-items-center text-decoration-none">
+      <Link to="/dashboard/calendar" className="d-flex text-dark flex-column align-items-center text-decoration-none">
         <Icon icon="ion:calendar-outline" className="mx-3 " width="40" height="35" />
         <span className="text-center">Calendar</span>
       </Link>
