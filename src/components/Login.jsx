@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Form, Button, FormGroup, FormCheck, Row, Col } from "react-bootstrap";
+import React,{useEffect} from "react";
+import { Form, Button, FormGroup, FormCheck, Row, Col, Container } from "react-bootstrap";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import Header from "./Header";
+import Footer from "./Footer";
+import Swal from "sweetalert2";
 
 function Login() {
+  
   const formik = useFormik({
     initialValues: {
       Email: "",
@@ -17,21 +21,36 @@ function Login() {
       Password: Yup.string().required("Required"),
     }),
     onSubmit: async (values) => {
+
       try {
         const response = await axios.post('http://localhost:3002/api/users/login', values);
-
-        const { accessToken, refreshToken } = response.data;
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-
-        window.location.href = "/dashboard";
+        if(response.status === 200)
+        {
+          const { accessToken, referenceToken } = response.data;
+          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('refreshToken', referenceToken);
+          // setIsSignedIn(true)
+          window.location.href="/dashboard"
+        }
       } catch (error) {
+        
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "Invalid Email or Password",
+        });
         console.error('Login failed:', error.response.data.error);
       }
     },
   });
+  useEffect(() => {
+    localStorage.removeItem("accessToken");
+  }, []);
 
   return (
+    <>
+    <Header />
+    <Container>
     <div>
       <div className=" mt-5">
         <div className="row mx-md-5 ">
@@ -48,7 +67,7 @@ function Login() {
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.Email && formik.errors.Email ? (
-                  <div className="error">{formik.errors.Email}</div>
+                  <div className="error text-danger my-2">{formik.errors.Email}</div>
                 ) : null}
               </Form.Group>
               <Form.Group controlId="Password">
@@ -61,7 +80,7 @@ function Login() {
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.Password && formik.errors.Password ? (
-                  <div className="error">{formik.errors.Password}</div>
+                  <div className="error text-danger my-2">{formik.errors.Password}</div>
                 ) : null}
               </Form.Group>
               <FormGroup controlId="rememberMe" className="mb-3 mt-3">
@@ -147,6 +166,9 @@ function Login() {
         </div>
       </div>
     </div>
+    </Container>
+    <Footer/> 
+    </>
   );
 }
 

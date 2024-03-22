@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -12,7 +11,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [isNavOpen, setNavOpen] = useState(false);
-  const [color, setColor] = useState(true);
 
   const navLinks = [
     { href: "#action1", text: "SIGN UP" },
@@ -23,7 +21,7 @@ function Header() {
       { href: "#action5", text: "DRYWALL" },
       { href: "#action6", text: "INSULATION" }
     ]},
-    { href: "#", text: "FsAQS", disabled: true },
+    { href: "#", text: "FAQS", disabled: true },
     { href: "#", text: "CONTACT US", disabled: true },
     { href: "#", text: "LOGIN", disabled: true }
   ];
@@ -129,16 +127,16 @@ function Header() {
                     <div
                       className={`dropdown-menu ${showDropdown ? "show" : ""}`}
                     >
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/floor">
                         FLOORING
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/roof">
                         ROOFING
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/dry">
                         DRYWALL
                       </a>
-                      <a className="dropdown-item" href="#">
+                      <a className="dropdown-item" href="/insult">
                         INSULATION 
                       </a>
                     </div>
@@ -151,7 +149,7 @@ function Header() {
                 <Link
                   to="/"
                   className={`mx-5 px-3 py-1 rounded-5 text-decoration-none text-dark ${
-                    location.pathname === "/" ? "bg-success text-white" : ""
+                    location.pathname === "/" ? "active_2 text-white" : ""
                   }`}
                 >
                   LOGIN
@@ -160,7 +158,7 @@ function Header() {
                   to="/register"
                   className={`px-3 py-1  text-dark rounded-5 text-decoration-none ${
                     location.pathname === "/register"
-                      ? "bg-success text-white"
+                      ? "active_2 text-white"
                       : ""
                   }`}
                 >

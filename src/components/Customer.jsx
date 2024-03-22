@@ -1,41 +1,74 @@
 import React from "react";
-import { Tabs, Tab } from "react-bootstrap";
+import { Tabs, Tab} from "react-bootstrap";
 import { Icon } from "@iconify/react";
+import { useState } from "react";
+import ModalForm from "./Modal/ModalForm";
+import ModalForm_1 from "./Modal/ModalForm_1";
 
 function Customer() {
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const handleIconClick = (index) => {
+    setSelectedRow(index);
+  };
+
+  const [modalStates, setModalStates] = useState({
+    showSummaryModal: false,
+    showLocationModal: false,
+    showLocationModal_1: false,
+    showActionModal: false,
+    showRetainageModal: false,
+    showLockModal: false,
+    showAddModal: false,
+    showFinalModal: false,
+  });
+
+  const handleCloseModal = (modalType) => {
+    setModalStates((prevState) => ({
+      ...prevState,
+      [modalType]: false,
+    }));
+  };
+
   const rowData = [
     { label: "Name", value: "John", icon: "bx:edit" },
     { label: "Type", value: "", icon: "bx:edit" },
     { label: "Sales Person", value: "Salesperson1", icon: "bx:edit" },
     { label: "Estimate", value: "", icon: "uiw:setting" },
     { label: "Project Manager", value: "Test company", icon: "bx:edit" },
+    { label: "Customer", value: "", icon: "uiw:setting" },
     { label: "Contact", value: "", icon: "uiw:setting" },
-    { label: "Sape division", value: "", icon: "uiw:setting" },
+    { label: "Subdivision", value: "", icon: "uiw:setting" },
     { label: "Plan", value: "", icon: "uiw:setting" },
     { label: "Address", value: "", icon: "bx:edit" },
     { label: "Work Orders", value: "None yet", icon: "bx:edit" },
   ];
 
   const buttons = [
-  { text: 'Close', color: 'primary' },
-  { text: 'Duplicate', color: 'success' },
-  { text: 'Archive', color: 'danger' }
-];
+    { text: "Close", color: "primary" },
+    { text: "Duplicate", color: "success" },
+    { text: "Archive", color: "danger" },
+  ];
 
   return (
     <div className="font">
       <div className="d-flex justify-content-between my-3 mx-3">
-  <div>
-    <span className="fs-5">Test</span>
-  </div>
-  <div className="text-white">
-    {buttons.map((button, index) => (
-      <span key={index} className={`bg-${button.color} rounded-2 p-2 ${index !== 0 ? 'ms-1' : ''}`}>
-        {button.text}
-      </span>
-    ))}
-  </div>
-</div>
+        <div>
+          <span className="fs-5">Test</span>
+        </div>
+        <div className="text-white">
+          {buttons.map((button, index) => (
+            <span
+              key={index}
+              className={`bg-${button.color} rounded-2 p-2 ${
+                index !== 0 ? "ms-1" : ""
+              }`}
+            >
+              {button.text}
+            </span>
+          ))}
+        </div>
+      </div>
       <hr className="my-0"></hr>
       <div className="m-2">
         <span>Opportunity </span>
@@ -92,11 +125,12 @@ function Customer() {
                             <span>{row.value}</span>
                             <span>
                               <Icon
+                                onClick={() => handleIconClick(index)}
                                 icon={row.icon}
                                 width="1.2rem"
                                 height="1rem"
                                 style={{
-                                  color: row.value ? "#006eff" : "#000000",
+                                  color: "#006eff",
                                 }}
                               />
                             </span>
@@ -104,6 +138,13 @@ function Customer() {
                         </td>
                       </tr>
                     ))}
+                    {selectedRow !== null && (
+                      <ModalForm_1
+                      show={true}
+                      handleClose={() =>setSelectedRow(null)}
+                      modalType={rowData[selectedRow]}
+                    />
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -124,12 +165,23 @@ function Customer() {
                   <span>Assigned office location</span>
                   <span>
                     <Icon
+                      onClick={() =>
+                        setModalStates({
+                          ...modalStates,
+                          showSummaryModal: true,
+                        })
+                      }
                       icon="bx:edit"
                       width="1.2rem"
                       height="1rem"
                       style={{ color: "#006eff" }}
                     />
                   </span>
+                  <ModalForm
+                    show={modalStates.showSummaryModal}
+                    handleClose={() => handleCloseModal("showSummaryModal")}
+                    modalType="summaryNotes"
+                  />
                 </div>
                 <hr className="my-0" />
                 <div className="d-flex my-2 flow-row justify-content-between mx-2">
@@ -140,10 +192,23 @@ function Customer() {
                   <div>
                     <span>
                       <Icon
+                        onClick={() =>
+                          setModalStates({
+                            ...modalStates,
+                            showLocationModal: true,
+                          })
+                        }
                         icon="bx:edit"
                         width="1.2rem"
                         height="1rem"
                         style={{ color: "#006eff" }}
+                      />
+                      <ModalForm
+                        show={modalStates.showLocationModal}
+                        handleClose={() =>
+                          handleCloseModal("showLocationModal")
+                        }
+                        modalType="location"
                       />
                     </span>
                   </div>
@@ -157,10 +222,23 @@ function Customer() {
                   <div>
                     <span>
                       <Icon
+                        onClick={() =>
+                          setModalStates({
+                            ...modalStates,
+                            showLocationModal_1: true,
+                          })
+                        }
                         icon="bx:edit"
                         width="1.2rem"
                         height="1rem"
                         style={{ color: "#006eff" }}
+                      />
+                      <ModalForm
+                        show={modalStates.showLocationModal_1}
+                        handleClose={() =>
+                          handleCloseModal("showLocationModal_1")
+                        }
+                        modalType="location_1"
                       />
                     </span>
                   </div>
@@ -170,10 +248,18 @@ function Customer() {
                   <span>Confidence Level</span>
                   <span>
                     <Icon
+                      onClick={() =>
+                        setModalStates({ ...modalStates, showLockModal: true })
+                      }
                       icon="bx:edit"
                       width="1.2rem"
                       height="1rem"
                       style={{ color: "#006eff" }}
+                    />
+                    <ModalForm
+                      show={modalStates.showLockModal}
+                      handleClose={() => handleCloseModal("showLockModal")}
+                      modalType="lock"
                     />
                   </span>
                 </div>
@@ -182,10 +268,21 @@ function Customer() {
                   <span>Action Needed</span>
                   <span>
                     <Icon
+                      onClick={() =>
+                        setModalStates({
+                          ...modalStates,
+                          showActionModal: true,
+                        })
+                      }
                       icon="bx:edit"
                       width="1.2rem"
                       height="1rem"
                       style={{ color: "#006eff" }}
+                    />
+                    <ModalForm
+                      show={modalStates.showActionModal}
+                      handleClose={() => handleCloseModal("showActionModal")}
+                      modalType="action"
                     />
                   </span>
                 </div>
@@ -194,10 +291,21 @@ function Customer() {
                   <span>Open Task</span>
                   <span>
                     <Icon
+                      onClick={() =>
+                        setModalStates({
+                          ...modalStates,
+                          showRetainageModal: true,
+                        })
+                      }
                       icon="bx:edit"
                       width="1.2rem"
                       height="1rem"
                       style={{ color: "#006eff" }}
+                    />
+                    <ModalForm
+                      show={modalStates.showRetainageModal}
+                      handleClose={() => handleCloseModal("showRetainageModal")}
+                      modalType="retain"
                     />
                   </span>
                 </div>
@@ -210,10 +318,18 @@ function Customer() {
                   <div>
                     <span>
                       <Icon
+                        onClick={() =>
+                          setModalStates({ ...modalStates, showAddModal: true })
+                        }
                         icon="bx:edit"
                         width="1.2rem"
                         height="1rem"
                         style={{ color: "#006eff" }}
+                      />
+                      <ModalForm
+                        show={modalStates.showAddModal}
+                        handleClose={() => handleCloseModal("showAddModal")}
+                        modalType="add"
                       />
                     </span>
                   </div>
@@ -227,10 +343,21 @@ function Customer() {
                   <div>
                     <span>
                       <Icon
+                        onClick={() =>
+                          setModalStates({
+                            ...modalStates,
+                            showFinalModal: true,
+                          })
+                        }
                         icon="bx:edit"
                         width="1.2rem"
                         height="1rem"
                         style={{ color: "#006eff" }}
+                      />
+                      <ModalForm
+                        show={modalStates.showFinalModal}
+                        handleClose={() => handleCloseModal("showFinalModal")}
+                        modalType="hi"
                       />
                     </span>
                   </div>

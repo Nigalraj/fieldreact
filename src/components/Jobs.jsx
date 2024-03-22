@@ -1,10 +1,9 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import CreateOpportunity from "./Createopportunity";
 import { Icon } from '@iconify/react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
+import headers from "../utils/data";
 
 function Jobs() {
   
@@ -12,24 +11,15 @@ function Jobs() {
   const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3002/api/opportunity',{
-      headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxMDg0NTY5NCwiZXhwIjoxNzEwODY3Mjk0fQ.PKAAs5OR9b9HTr4dty5Ylicx6wwNFB-96io8gx5Gjdo`
-      }
+    axios.get('http://localhost:3002/api/estimates',{
+      headers: headers
     })
       .then(response => 
         {
           console.log(response.data);
-          const form = response.data.map(({ CustomerId,CreatedBy,ModifiedBy, Status,Name,Address1,Action }) => ({
-            CustomerId: CustomerId,
-            CreatedBy:CreatedBy,
-            ModifiedBy: ModifiedBy,
-            Status: Status,
+          const form = response.data.map(({ Name }) => ({
             Name:Name,
-            Address1:Address1,
-            Action:Action
           }));
-          console.log(form);
         setData(form);
         })
       .catch(error => console.error('Error fetching data:', error));
@@ -44,7 +34,6 @@ function Jobs() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const filteredItems = data.filter(item =>
-    // (item.CustomerId && item.CustomerId.toLowerCase().includes(searchQuery.toLowerCase())) || 
   (item.CreatedBy && item.CreatedBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
   (item.ModifiedBy && item.ModifiedBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
   (item.Status && item.Status.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -93,11 +82,6 @@ function Jobs() {
     return pageNumbers;
   };
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
     <>
       <div className="d-flex py-2 flex-column flex-md-row justify-content-between align-md-items-center px-3 bg-light">
@@ -105,30 +89,23 @@ function Jobs() {
           <h4>Jobs</h4>
         </div>
         <div className="d-flex my-2 my-md-0">
-          <Button variant="warning p-2 px-3 rounded-4">view Archieved</Button>
-          <Button
-            variant="success"
-            className="p-2 px-3 ms-1 rounded-4 text-white"
-            onClick={handleShow}
-          >
-            Start New Opportunity
-          </Button>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Start New Opportunity</Modal.Title>
-            </Modal.Header>
-            <Modal.Body className="model-height overflow-auto">
-              <CreateOpportunity/>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Save Changes
-              </Button>
-            </Modal.Footer>
-          </Modal>
+        <Dropdown>
+                <Dropdown.Toggle
+                  id="dropdown-basic"
+                  className="bg-light text-dark border-light"
+                >
+                  View jobs Needing
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
         </div>
       </div>
       <hr className=" my-0" />
@@ -257,27 +234,27 @@ function Jobs() {
           <thead>
             <tr>
               <th scope="col">Customer</th>
-              <th scope="col">Created</th>
-              <th scope="col">Modified</th>
+              <th scope="col">WO</th>
+              <th scope="col">Project Name/Number</th>
+              <th scope="col">Site Address</th>
+              <th scope="col">Type</th>
               <th scope="col">Status</th>
-              <th scope="col">Name/Number</th>
-              <th scope="col">Address</th>
-              <th scope="col">Salesperson</th>
-              <th scope="col">Action</th>
-              <th scope="col">Due Date</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">SalesPerson</th>
+              <th scope="col">Contact</th>
             </tr>
           </thead>
           <tbody>
             {currentItemsOnPage?.map((item, index) => (
               <tr key={index}>
-                <td>g</td>
-                <td>{item.CreatedBy}</td>
-                <td>{item.ModifiedBy}</td>
-                <td>{item.Status}</td>
-                <td>Opportunity Name</td>
-                <td>{item.Address1}</td>
+                <td><Link to="/dashboard/projects">fgjn</Link></td>
                 <td>-</td>
-                <td>{item.Action}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>Opportunity Name</td>
+                <td>{item.Name}</td>
+                <td>-</td>
+                <td>-</td>
                 <td>-</td>
               </tr>
             ))}

@@ -1,10 +1,7 @@
 import React from 'react';
-import logoImage from '../Asset/logo.png';
-import { Icon } from '@iconify/react';
 import logo from '../Asset/logo-footer.jpg';
 
 function Footer() {
-
 
   return (
     <div className='pb-5 px-3 px-lg-0 form_bg'>

@@ -22,11 +22,11 @@ function Header_2() {
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
             <Link to="/dashboard" className="px-xl-3 fs-6 py-3 ps-lg-2 ps-xl-3 text-decoration-none text-white">FIELD GROOVC</Link>
-            <Link to="/leads" className="text-decoration-none"><span className="py-xl-3 fs-6 ps-3 text-white">Leads</span></Link>
-            <Link to="/opportunity" className="text-decoration-none">
+            <Link to="/dashboard/leads" className="text-decoration-none"><span className="py-xl-3 fs-6 ps-3 text-white">Leads</span></Link>
+            <Link to="/dashboard/opportunity" className="text-decoration-none">
               <span className="px-3 text-white  fs-6 py-3">Opportunities</span>
             </Link>
-            <Link to="/jobs" className="text-decoration-none"><span className="py-3 text-white fs-6">Jobs</span></Link>
+            <Link to="/dashboard/jobs" className="text-decoration-none"><span className="py-3 text-white fs-6">Jobs</span></Link>
             <div class="dropdown">
               <button
                 class="btn btn-sky border-0 dropdown-toggle"
@@ -38,17 +38,17 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/another">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/sometimes">
                     Something else here
                   </a>
                 </li>
@@ -65,17 +65,17 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="another">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="sometimes">
                     Something else here
                   </a>
                 </li>
@@ -92,17 +92,17 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/another">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/someting">
                     Something else here
                   </a>
                 </li>
@@ -119,17 +119,17 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/another">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/sometimes">
                     Something else here
                   </a>
                 </li>
@@ -148,17 +148,17 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/another">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/something">
                     Something else here
                   </a>
                 </li>
@@ -179,7 +179,7 @@ function Header_2() {
           </div>
         </div>
       </div>
-      <div className="d-lg-none ">
+      <div className="d-lg-none">
         <div className="bg-primary d-flex justify-content-between text-white">
           <span className="py-2 ms-3">FieldGroove</span>
           <Button variant="primary" onClick={handleShow} className="me-2">
@@ -218,12 +218,12 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/another">
                     Another action
                   </a>
                 </li>

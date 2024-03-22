@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import headers from "../utils/data";
 
 function UncontrolledExample() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -46,10 +47,7 @@ function UncontrolledExample() {
         "http://localhost:3002/api/opportunity",
         formData,
         {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxMDgyMzk4NywiZXhwIjoxNzEwODQ1NTg3fQ.dF6-6v0a_girmzeVTZacmswDd6xIocCkcupiSYiqLTE",
-          },
+          headers: headers
         }
       );
       console.log("Opportunity created:", response.data);
@@ -65,7 +63,6 @@ function UncontrolledExample() {
       BillingAddress1: formData.Address1,
       BillingAddress2: formData.Address2,
     });
-    console.log(billingAdd, "ghb");
     setBillingAdd(!billingAdd);
   };
 
@@ -175,7 +172,7 @@ function UncontrolledExample() {
                       <tbody>
                         <tr>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="CompanyName"
                               value={formData.CompanyName}
@@ -184,7 +181,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="FirstName"
                               value={formData.FirstName}
@@ -193,7 +190,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="LastName"
                               value={formData.LastName}
@@ -252,7 +249,7 @@ function UncontrolledExample() {
                       <tbody>
                         <tr>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="Name"
                               value={formData.Name}
@@ -261,7 +258,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="number"
                               name="Phone"
                               value={formData.Phone}
@@ -270,7 +267,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="work"
                               value={formData.work}
@@ -279,7 +276,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="Email"
                               value={formData.Email}
@@ -288,7 +285,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="Website"
                               value={formData.Website}
@@ -319,7 +316,7 @@ function UncontrolledExample() {
                       <tbody>
                         <tr>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="Address1"
                               value={formData.Address1}
@@ -328,7 +325,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="Address2"
                               value={formData.Address2}
@@ -337,7 +334,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="City"
                               value={formData.City}
@@ -346,7 +343,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="State"
                               value={formData.State}
@@ -355,7 +352,7 @@ function UncontrolledExample() {
                             />
                           </td>
                           <td>
-                            <input
+                            <Form.Control
                               type="text"
                               name="Zip"
                               value={formData.Zip}
@@ -379,7 +376,7 @@ function UncontrolledExample() {
                 </div>
                 <div className="d-flex my-3">
                   <span className="me-4 pe-1">Bid Date</span>
-                  <input
+                  <Form.Control
                     type="date"
                     name="BidDate"
                     className="ms-5 "
