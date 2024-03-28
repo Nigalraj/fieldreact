@@ -338,6 +338,127 @@ const Addcustomer = () => {
               </div>
             </div>
            <hr className="mx-3 my-5"/>
+           <div className="row mx-0 mt-3">
+              <div className="col-lg-8 col-md-12  mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col-3 col-md-6">
+                <Form.Label className="text-nowrap">
+                  Email
+                </Form.Label>
+                </div>
+                <div className="col-md-6 ">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
+              </div>
+            </div>
+            <div className="row mx-0 mt-3">
+              <div className="col-lg-8 col-md-12   mt-2 mt-lg-0 d-flex flex-column align-md-items-center flex-md-row">
+                <div className="col-3 col-md-6">
+                <Form.Label className="text-nowrap">Lead Source</Form.Label>
+                </div>
+                <div className="col-md-6 ">
+                <Form.Select
+                  aria-label="Default select example"
+                  className="w-100"
+                >
+                  <option>Select a campagin...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+                </div>
+              </div>  
+            </div>
+            <div className="row mx-0 mt-3">
+              <div className="col-lg-8  mt-2 mt-lg-0 d-flex flex-column align-md-items-center flex-md-row">
+                <div className="col-3 col-md-6">
+                <Form.Label className="text-nowrap">Salesperson</Form.Label>
+                </div>
+                <div className="col-md-6 ">
+                <Form.Select
+                  aria-label="Default select example"
+                  className="w-100"
+                >
+                  <option>Select a salesman...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+                </div>
+              </div>  
+            </div>
+            <div className="row mx-0 mt-3">
+              <div className="col-lg-8  mt-2 mt-lg-0 d-flex flex-column align-md-items-center flex-md-row">
+                <div className="col-3 col-md-6">
+                <Form.Label className="text-nowrap">Preferred Invoice Method</Form.Label>
+                </div>
+                <div className="col-md-6">
+                <Form.Select
+                  aria-label="Default select example"
+                  className="w-100"
+                >
+                  <option>Select a preferred method</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+                </div>
+              </div>  
+            </div>
+            <div className="row mx-0 mt-3">
+                <div className="col-lg-12 d-flex flex-column flex-md-row">
+                    <div className="col-12 col-lg-4 col-md-6">
+                        <Form.Label>Options</Form.Label>
+                    </div>
+                    <div className="col-lg-8 col-12 col-md-6">
+                        <div className="d-flex mt-2">
+                            <span><Form.Check/></span>
+                            <span className="ms-2" >Active</span>
+                        </div>
+                        <div className="d-flex mt-2">
+                            <span><Form.Check/></span>
+                            <span className="ms-2 " >Opt Out of Event and Invoice Reminders (overrides contact setting)</span>
+                        </div>
+                        <div className="d-flex mt-2">
+                            <span><Form.Check/></span>
+                            <span className="ms-2 " >Opt Out of Estimate Future Reminders</span>
+                        </div>
+                        <div className="d-flex mt-2">
+                            <span><Form.Check/></span>
+                            <span className="ms-2" >Do Not Quote</span>
+                        </div>
+                        <div className="d-flex mt-2">
+                            <span><Form.Check/></span>
+                            <span className="ms-2" >Pending Credit Approval</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row mx-0 mt-3">
+                <div className="d-flex flex-column flex-md-row">
+                <div className="col-md-6 col-lg-4">
+                    <Form.Label>Locations</Form.Label>
+                </div>
+                <div className="col-md-6 col-lg-8 col-12 ">
+                    <span className="start rounded-4 text-center text-white p-1 ">New York(NY),</span>
+                </div>
+                </div>
+            </div>
+            <div className="row mx-0 mt-3">
+                <div className="d-flex flex-column flex-md-row">
+                <div className="col-md-6 col-lg-4">
+                    <Form.Label>Credit Balance</Form.Label>
+                </div>
+                <div className="col-md-6 col-lg-8 col-12 ">
+                    <span className="">Rs. 0.00 - this can be used when applying a payment to an invoice or by clicking here</span>
+                </div>
+                </div>
+            </div>
+            <hr className="m-3 "/>
+            <div className="d-flex justify-content-end m-3">
+                <Button>Save</Button>
+                <Button variant="light" className="ms-2">Cancel</Button>
+            </div>
+            <hr className="m-3 "/>
           </Tab>
           <Tab eventKey="profile" title="Contacts(0)">
             Tab content for Contacts

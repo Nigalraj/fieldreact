@@ -15,15 +15,18 @@ function Header() {
   const navLinks = [
     { href: "#action1", text: "SIGN UP" },
     { href: "#action2", text: "FEATURES" },
-    { title: "INDUSTRIES", items: [
-      { href: "#action3", text: "FLOORING" },
-      { href: "#action4", text: "ROOFING" },
-      { href: "#action5", text: "DRYWALL" },
-      { href: "#action6", text: "INSULATION" }
-    ]},
+    {
+      title: "INDUSTRIES",
+      items: [
+        { href: "#action3", text: "FLOORING" },
+        { href: "#action4", text: "ROOFING" },
+        { href: "#action5", text: "DRYWALL" },
+        { href: "#action6", text: "INSULATION" },
+      ],
+    },
     { href: "#", text: "FAQS", disabled: true },
     { href: "#", text: "CONTACT US", disabled: true },
-    { href: "#", text: "LOGIN", disabled: true }
+    { href: "#", text: "LOGIN", disabled: true },
   ];
   const handleNavToggle = () => {
     setNavOpen(!isNavOpen);
@@ -73,23 +76,39 @@ function Header() {
             id="navbarScroll"
             className={isNavOpen ? "show" : ""}
           >
-            <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-  {navLinks.map((link, index) => {
-    if (link.title) {
-      return (
-        <NavDropdown key={index} title={link.title} id="navbarScrollingDropdown">
-          {link.items.map((item, idx) => (
-            <NavDropdown.Item key={idx} href={item.href}>{item.text}</NavDropdown.Item>
-          ))}
-        </NavDropdown>
-      );
-    } else {
-      return (
-        <Nav.Link key={index} href={link.href} disabled={link.disabled}>{link.text}</Nav.Link>
-      );
-    }
-  })}
-</Nav>
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: "100px" }}
+              navbarScroll
+            >
+              {navLinks.map((link, index) => {
+                if (link.title) {
+                  return (
+                    <NavDropdown
+                      key={index}
+                      title={link.title}
+                      id="navbarScrollingDropdown"
+                    >
+                      {link.items.map((item, idx) => (
+                        <NavDropdown.Item key={idx} href={item.href}>
+                          {item.text}
+                        </NavDropdown.Item>
+                      ))}
+                    </NavDropdown>
+                  );
+                } else {
+                  return (
+                    <Nav.Link
+                      key={index}
+                      href={link.href}
+                      disabled={link.disabled}
+                    >
+                      {link.text}
+                    </Nav.Link>
+                  );
+                }
+              })}
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -137,7 +156,7 @@ function Header() {
                         DRYWALL
                       </a>
                       <a className="dropdown-item" href="/insult">
-                        INSULATION 
+                        INSULATION
                       </a>
                     </div>
                   </div>
@@ -147,25 +166,27 @@ function Header() {
                 <span className="mx-5">FAQS</span>
                 <span>CONTACT US</span>
                 <span>
-                <Link
-                  to="/"
-                  className={`mx-5 px-3 py-1 rounded-5 text-decoration-none text-dark ${
-                    location.pathname === "/" ? "active_2 text-white" : ""
-                  }`}
-                >
-                  LOGIN
-                </Link> 
+                  <Link
+                    to="/"
+                    className={`mx-5 px-3 py-1 rounded-5 text-decoration-none text-dark ${
+                      location.pathname === "/" ? "active_2 text-white" : ""
+                    }`}
+                  >
+                    LOGIN
+                  </Link>
                 </span>
-                <span><Link
-                  to="/register"
-                  className={`px-3 py-1  text-dark rounded-5 text-decoration-none ${
-                    location.pathname === "/register"
-                      ? "active_2 text-white"
-                      : ""
-                  }`}
-                >
-                  SIGN UP
-                </Link></span>
+                <span>
+                  <Link
+                    to="/register"
+                    className={`px-3 py-1  text-dark rounded-5 text-decoration-none ${
+                      location.pathname === "/register"
+                        ? "active_2 text-white"
+                        : ""
+                    }`}
+                  >
+                    SIGN UP
+                  </Link>
+                </span>
               </div>
             </div>
           </div>
