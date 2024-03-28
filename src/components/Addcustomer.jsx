@@ -57,33 +57,45 @@ const Addcustomer = () => {
           </div>
         </div>
       </div>
-      <div className="col-lg-9">
+      <div className="col-lg-9 p-2">
         <Tabs
           defaultActiveKey="lead"
           id="uncontrolled-tab-example"
-          className="mb-3 "
+          className=""
         >
-          <Tab eventKey="lead" className=" ms-3" title="Lead Information">
-            <div className="row mx-0">
+          <Tab eventKey="lead" className=" pt-3 border" title="Lead Information">
+            <div className="row mx-0 ">
               <div className="col-lg-4 d-flex  flex-column flex-md-row">
+                <div className="col ">
                 <Form.Label className="text-nowrap">House Account</Form.Label>
-                <Form.Check className="ms-md-3"></Form.Check>
+                </div>
+                <div className="col ">
+                <Form.Check className=""></Form.Check>
+                </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 d-flex mt-2 mt-lg-0 flex-column flex-md-row">
+                <div className="col">
                 <Form.Label className="text-nowrap">
                   Commercial Account
                 </Form.Label>
-                <Form.Check className="ms-md-3"></Form.Check>
+                </div>
+                <div className="col">
+                <Form.Check className=""></Form.Check>
+                </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 d-flex  mt-2 mt-lg-0 flex-column flex-md-row">
+                <div className="col">
                 <Form.Label className="text-nowrap">
                   Same as physical
                 </Form.Label>
-                <Form.Check className="ms-md-3"></Form.Check>
+                </div>
+                <div className="col">
+                <Form.Check className=""></Form.Check>
+                </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+            <div className="row mx-0 ">
+              <div className="col-lg-4  mt-2 mt-lg-0 d-flex flex-column align-md-items-center flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">Customer Type</Form.Label>
                 </div>
@@ -99,7 +111,7 @@ const Addcustomer = () => {
                 </Form.Select>
                 </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex flex-column align-md-items-center  flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">
                   Physical Address 1
@@ -109,7 +121,7 @@ const Addcustomer = () => {
                 <Form.Control className="w-100"></Form.Control>
                 </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex flex-column align-md-items-center  flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">
                   Billing Address 1
@@ -120,10 +132,10 @@ const Addcustomer = () => {
                 </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+            <div className="row mx-0 mt-lg-3">
+              <div className="col-lg-4 mt-2 mt-lg-0 align-md-items-center d-flex flex-column flex-md-row">
                 <div className="col">
-                <Form.Label className="text-nowrap">Customer Type</Form.Label>
+                <Form.Label className="text-nowrap">Account Type</Form.Label>
                 </div>
                 <div className="col">
                 <Form.Select
@@ -137,20 +149,20 @@ const Addcustomer = () => {
                 </Form.Select>
                 </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex align-md-items-center flex-column flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">
-                  Physical Address 1
+                  Physical Address 2
                 </Form.Label>
                 </div>
                 <div className="col ">
                 <Form.Control className="w-100"></Form.Control>
                 </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex align-md-items-center  flex-column flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">
-                  Billing Address 1
+                  Billing Address 2
                 </Form.Label>
                 </div>
                 <div className="col">
@@ -158,31 +170,31 @@ const Addcustomer = () => {
                 </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+            <div className="row mx-0  mt-lg-3">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex align-md-items-center  flex-column flex-md-row">
               <div className="col">
                 <Form.Label className="text-nowrap">
-                  Billing Address 1
+                 First Name 
                 </Form.Label>
                 </div>
                 <div className="col">
                 <Form.Control className="w-100"></Form.Control>
                 </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex align-md-items-center flex-column flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">
-                  Physical Address 1
+                  Physical City
                 </Form.Label>
                 </div>
                 <div className="col ">
                 <Form.Control className="w-100"></Form.Control>
                 </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex align-md-items-center  flex-column flex-md-row">
                 <div className="col">
                 <Form.Label className="text-nowrap">
-                  Billing Address 1
+                  Billing City
                 </Form.Label>
                 </div>
                 <div className="col">
@@ -190,78 +202,142 @@ const Addcustomer = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column justify-content-between  flex-md-row">
-                <Form.Label className="text-nowrap me-4">First Name</Form.Label>
-                <Form.Control className="ms-lg-4 ms-md-3"></Form.Control>
+            <div className="row mx-0  mt-lg-3">
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                  Last Name
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap me-lg-4 pe-lg-3">Physical City </Form.Label>
-                <Form.Control className="ms-md-3 "></Form.Control>
+              <div className="col-lg-4 mt-2 mt-lg-0 align-md-items-center  d-flex flex-column flex-md-row">
+                <div className="col">
+                <Form.Label className="text-nowrap">
+                  Physical State
+                </Form.Label>
+                </div>
+                <div className="col ">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Billing City</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
-              </div>
-            </div>
-            <div className="row mx-0">
-              <div className="col-lg-4  d-flex flex-column justify-content-between flex-md-row">
-                <Form.Label className="text-nowrap">Last Name</Form.Label>
-                <Form.Control className=""></Form.Control>
-              </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Physical State</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
-              </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Billing State</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
-              </div>
-            </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column  justify-content-between  flex-md-row">
-                <Form.Label className="text-nowrap">Phone</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
-              </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Physical Zip </Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
-              </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Billing Zip</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
+              <div className="col-lg-4 mt-2 mt-lg-0 d-flex align-md-items-center  flex-column flex-md-row">
+                <div className="col">
+                <Form.Label className="text-nowrap">
+                  Billing State
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column justify-content-between  flex-md-row">
-                <Form.Label className="text-nowrap">Fax</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
+            <div className="row mx-0  mt-lg-3">
+              <div className="col-lg-4 mt-2 align-md-items-center mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                  Phone
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+                <div className="col">
+                <Form.Label className="text-nowrap">
+                  Physical Zip
+                </Form.Label>
+                </div>
+                <div className="col ">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
+              </div>
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+                <div className="col">
+                <Form.Label className="text-nowrap">
+                  Billing Zip
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
+              </div>
+            </div>
+            <div className="row mx-0 mt-lg-3">
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                 Fax
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
+              </div>
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+                <div className="col">
                 <Form.Label className="text-nowrap">
                   Physical Country
                 </Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
+                </div>
+                <div className="col ">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column justify-content-between  flex-md-row">
-                <Form.Label className="text-nowrap">Mobile</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
+            <div className="row mx-0 mt-lg-3">
+              <div className="col-lg-4 align-md-items-center   mt-2 mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                  Mobile
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Work Phone</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
+            <div className="row mx-0 mt-lg-3">
+              <div className="col-lg-4 align-md-items-center  mt-2 mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                  Work Phone
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
             </div>
-            <div className="row mx-0">
-              <div className="col-lg-4 d-flex flex-column flex-md-row">
-                <Form.Label className="text-nowrap">Email</Form.Label>
-                <Form.Control className="ms-md-3"></Form.Control>
+            <div className="row mx-0 mt-lg-3">
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                  Email
+                </Form.Label>
+                </div>
+                <div className="col">
+                <Form.Control className="w-100"></Form.Control>
+                </div>
               </div>
-            </div> */}
+            </div>
+            <div className="row mx-0 mt-lg-3">
+              <div className="col-lg-4 mt-2 align-md-items-center  mt-lg-0 d-flex flex-column flex-md-row">
+              <div className="col">
+                <Form.Label className="text-nowrap">
+                  Discount
+                </Form.Label>
+                </div>
+                <div className="col d-flex align-items-center ">
+                <span><Form.Control className="w-100 rounded-end-0"></Form.Control></span>
+                <span className="bg-grey p-2 rounded-end">%</span>  
+                </div>
+              </div>
+            </div>
+           <hr className="mx-3 my-5"/>
           </Tab>
           <Tab eventKey="profile" title="Contacts(0)">
             Tab content for Contacts
