@@ -5,6 +5,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import headers from "../utils/data";
+import ApiServices from "../Constants/ApiService";
 
 function UncontrolledExample() {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
@@ -40,17 +41,10 @@ function UncontrolledExample() {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
+    
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3002/api/opportunity",
-        formData,
-        {
-          headers: headers
-        }
-      );
-      console.log("Opportunity created:", response.data);
+      const response = await ApiServices.postLead(formData);
       window.location.reload();
     } catch (error) {
       console.error("Error creating opportunity:", error);
@@ -86,7 +80,7 @@ function UncontrolledExample() {
           <span>Leads &gt; Create Lead</span>
         </div>
         <hr />
-        <div className="ms-3 border">
+        <div className="ms-3 border border-top-0 ">
           <Tabs
             defaultActiveKey="lead"
             id="uncontrolled-tab-example"

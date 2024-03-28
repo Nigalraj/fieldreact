@@ -3,20 +3,19 @@ import Button from "react-bootstrap/Button";
 import { Modal, Form } from "react-bootstrap";
 
 function ModalForm({ show, handleClose, modalType }) {
-  
   const renderModalBody = () => {
     switch (modalType.label) {
       case "Name":
         return (
           <table className="table table-bordered">
             <tbody>
-            <td>
-                  <Form.Control
-                    name="feedback"
-                    aria-label="Feedback"
-                    aria-describedby="basic-addon2"
-                  />
-                </td>
+              <td>
+                <Form.Control
+                  name="feedback"
+                  aria-label="Feedback"
+                  aria-describedby="basic-addon2"
+                />
+              </td>
             </tbody>
           </table>
         );
@@ -25,11 +24,11 @@ function ModalForm({ show, handleClose, modalType }) {
           <table className=" table table-bordered">
             <tbody>
               <tr>
-              <Form.Select>
-                <option>Select a type..</option>
-                <option>f</option>
-                <option>f</option>
-              </Form.Select>
+                <Form.Select>
+                  <option>Select a type..</option>
+                  <option>f</option>
+                  <option>f</option>
+                </Form.Select>
               </tr>
             </tbody>
           </table>
@@ -41,17 +40,15 @@ function ModalForm({ show, handleClose, modalType }) {
               <tr>
                 <td>Salesperson</td>
                 <td>
-                <Form.Select>
-                <option>Deepiga Madan</option>
-                <option>f</option>
-                <option>f</option>
-              </Form.Select>
+                  <Form.Select>
+                    <option>Deepiga Madan</option>
+                    <option>f</option>
+                    <option>f</option>
+                  </Form.Select>
                 </td>
               </tr>
               <tr>
-                <td>
-                  Commission
-                </td>
+                <td>Commission</td>
                 <td>
                   <Form.Control
                     name="feedback"
@@ -67,20 +64,18 @@ function ModalForm({ show, handleClose, modalType }) {
         return (
           <table className="table table-bordered">
             <tbody>
-            <tr>
+              <tr>
                 <td>Salesperson</td>
                 <td>
-                <Form.Select>
-                <option>Deepiga Madan</option>
-                <option>f</option>
-                <option>f</option>
-              </Form.Select>
+                  <Form.Select>
+                    <option>Deepiga Madan</option>
+                    <option>f</option>
+                    <option>f</option>
+                  </Form.Select>
                 </td>
               </tr>
               <tr>
-                <td>
-                  Commission
-                </td>
+                <td>Commission</td>
                 <td>
                   <Form.Control
                     name="feedback"
@@ -113,26 +108,24 @@ function ModalForm({ show, handleClose, modalType }) {
         return (
           <table className=" table table-bordered">
             <tbody>
-            <tr>
+              <tr>
                 <td>Primary</td>
                 <td>
-                <Form.Select>
-                <option>Select a primary contact</option>
-                <option>f</option>
-                <option>f</option>
-              </Form.Select>
+                  <Form.Select>
+                    <option>Select a primary contact</option>
+                    <option>f</option>
+                    <option>f</option>
+                  </Form.Select>
                 </td>
               </tr>
               <tr>
+                <td>Alternate</td>
                 <td>
-                  Alternate
-                </td>
-                <td>
-                <Form.Select>
-                <option>Select a alternate contact</option>
-                <option>f</option>
-                <option>f</option>
-              </Form.Select>
+                  <Form.Select>
+                    <option>Select a alternate contact</option>
+                    <option>f</option>
+                    <option>f</option>
+                  </Form.Select>
                 </td>
               </tr>
             </tbody>
@@ -270,9 +263,7 @@ function ModalForm({ show, handleClose, modalType }) {
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>
-            {modalType.label}
-          </Modal.Title>
+          <Modal.Title>{modalType.label}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{renderModalBody()}</Modal.Body>
         <Modal.Footer>

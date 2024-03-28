@@ -3,10 +3,10 @@ import { Form, Button, FormGroup, FormCheck, Row, Col, Container } from "react-b
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import Header from "./Header";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
+import ApiServices from "../Constants/ApiService";
 
 function Login() {
   
@@ -17,32 +17,31 @@ function Login() {
       rememberMe: false,
     },
     validationSchema: Yup.object({
-      Email: Yup.string().email("Invalid email address").required("Required"),
-      Password: Yup.string().required("Required"),
+      Email: Yup.string().email("Invalid email address").required("Require the Email"),
+      Password: Yup.string().required("Require the Password"),
     }),
     onSubmit: async (values) => {
-
       try {
-        const response = await axios.post('http://localhost:3002/api/users/login', values);
+        const response = await ApiServices.loginData(values);
         if(response.status === 200)
         {
           const { accessToken, referenceToken } = response.data;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', referenceToken);
-          // setIsSignedIn(true)
-          window.location.href="/dashboard"
+          window.location.href="/dashboard";
         }
       } catch (error) {
         
         Swal.fire({
           icon: "warning",
-          title: "Oops...",
+          title: "Check it!",
           text: "Invalid Email or Password",
         });
         console.error('Login failed:', error.response.data.error);
       }
     },
   });
+
   useEffect(() => {
     localStorage.removeItem("accessToken");
   }, []);
@@ -67,7 +66,7 @@ function Login() {
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.Email && formik.errors.Email ? (
-                  <div className="error text-danger my-2">{formik.errors.Email}</div>
+                  <div className="error text-danger  my-2">{formik.errors.Email}</div>
                 ) : null}
               </Form.Group>
               <Form.Group controlId="Password">

@@ -146,6 +146,7 @@ function Header() {
               <div className="d-flex justify-content-between">
                 <span className="mx-5">FAQS</span>
                 <span>CONTACT US</span>
+                <span>
                 <Link
                   to="/"
                   className={`mx-5 px-3 py-1 rounded-5 text-decoration-none text-dark ${
@@ -154,7 +155,8 @@ function Header() {
                 >
                   LOGIN
                 </Link> 
-                <Link
+                </span>
+                <span><Link
                   to="/register"
                   className={`px-3 py-1  text-dark rounded-5 text-decoration-none ${
                     location.pathname === "/register"
@@ -163,7 +165,7 @@ function Header() {
                   }`}
                 >
                   SIGN UP
-                </Link>
+                </Link></span>
               </div>
             </div>
           </div>

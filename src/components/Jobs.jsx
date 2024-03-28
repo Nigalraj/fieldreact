@@ -1,46 +1,48 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import { Icon } from '@iconify/react';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Icon } from "@iconify/react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import headers from "../utils/data";
+import ApiServices from "../Constants/ApiService";
 
 function Jobs() {
-  
   const [data, setData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    axios.get('http://localhost:3002/api/estimates',{
-      headers: headers
-    })
-      .then(response => 
-        {
-          console.log(response.data);
-          const form = response.data.map(({ Name }) => ({
-            Name:Name,
-          }));
+    ApiServices.getEstimate()
+      .then((response) => {
+        const form = response.data.map(({ Name }) => ({
+          Name: Name,
+        }));
         setData(form);
-        })
-      .catch(error => console.error('Error fetching data:', error));
+      })
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
- 
-  const itemsPerPage = 5; 
+  const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
-
   const pageCount = Math.ceil(data.length / itemsPerPage);
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const filteredItems = data.filter(item =>
-  (item.CreatedBy && item.CreatedBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
-  (item.ModifiedBy && item.ModifiedBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
-  (item.Status && item.Status.toLowerCase().includes(searchQuery.toLowerCase())) ||
-  (item.Name && item.Name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-  (item.Address1 && item.Address1.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredItems = data.filter(
+    (item) =>
+      (item.CreatedBy &&
+        item.CreatedBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.ModifiedBy &&
+        item.ModifiedBy.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.Status &&
+        item.Status.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.Name &&
+        item.Name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (item.Address1 &&
+        item.Address1.toLowerCase().includes(searchQuery.toLowerCase()))
   );
-  const currentItemsOnPage = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItemsOnPage = filteredItems.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   const nextPage = () => {
     if (indexOfLastItem < data.length) {
@@ -74,7 +76,11 @@ function Jobs() {
 
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
-        <span key={i} onClick={() => setPage(i)} className={i === currentPage ? 'active1' : 'inactive'}>
+        <span
+          key={i}
+          onClick={() => setPage(i)}
+          className={i === currentPage ? "active1" : "inactive"}
+        >
           {i}
         </span>
       );
@@ -89,23 +95,19 @@ function Jobs() {
           <h4>Jobs</h4>
         </div>
         <div className="d-flex my-2 my-md-0">
-        <Dropdown>
-                <Dropdown.Toggle
-                  id="dropdown-basic"
-                  className="bg-light text-dark border-light"
-                >
-                  View jobs Needing
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle
+              id="dropdown-basic"
+              className="bg-light text-dark border-light"
+            >
+              View jobs Needing
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
       </div>
       <hr className=" my-0" />
@@ -124,7 +126,6 @@ function Jobs() {
               <select class="form-select " aria-label="Default select example">
                 <option selected="">Select a Status</option>
                 <option value="1">Active</option>
-               
               </select>
             </div>
             <div className="pt-3">
@@ -145,14 +146,18 @@ function Jobs() {
             </div>
             <div className="row mx-2 pb-4">
               <div className="col-6  text-center">
-              <div className="bg-grey py-2 rounded-3 ">
-              <Icon icon="lets-icons:export-fill" width="1.2rem" height="1.2rem"  style={{color: "black"}} />Export
-              </div>
-              </div >
-              <div className="col-6 text-center">
-                <div className="rounded-3 py-2 bg-info">
-                Info
+                <div className="bg-grey py-2 rounded-3 ">
+                  <Icon
+                    icon="lets-icons:export-fill"
+                    width="1.2rem"
+                    height="1.2rem"
+                    style={{ color: "black" }}
+                  />
+                  Export
                 </div>
+              </div>
+              <div className="col-6 text-center">
+                <div className="rounded-3 py-2 bg-info">Info</div>
               </div>
             </div>
           </div>
@@ -215,7 +220,7 @@ function Jobs() {
             </div>
           </div>
           <div>
-          <div className="d-flex align-items-center my-2">
+            <div className="d-flex align-items-center my-2">
               <span>Search</span>
               <input
                 className="form-control mx-2"
@@ -247,7 +252,9 @@ function Jobs() {
           <tbody>
             {currentItemsOnPage?.map((item, index) => (
               <tr key={index}>
-                <td><Link to="/dashboard/projects">fgjn</Link></td>
+                <td>
+                  <Link to="/dashboard/projects">fgjn</Link>
+                </td>
                 <td>-</td>
                 <td>-</td>
                 <td>-</td>
@@ -262,12 +269,16 @@ function Jobs() {
         </table>
       </div>
       <div className="d-flex justify-content-end ">
-       <div >
-        <button onClick={prevPage} disabled={currentPage === 1}>Previous</button>
-        <button className="border-0 bg-white">{renderPageNumbers()}</button>
-        <button onClick={nextPage} disabled={indexOfLastItem >= data.length}>Next</button>
+        <div>
+          <button onClick={prevPage} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <button className="border-0 bg-white">{renderPageNumbers()}</button>
+          <button onClick={nextPage} disabled={indexOfLastItem >= data.length}>
+            Next
+          </button>
+        </div>
       </div>
-       </div>
     </>
   );
 }

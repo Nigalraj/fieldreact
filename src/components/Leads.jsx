@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import headers from "../utils/data";
+import { Form } from "react-bootstrap";
+import ApiServices from "../Constants/ApiService";
 
 function Leads() {
   const [data, setData] = useState([]);
@@ -23,12 +25,8 @@ function Leads() {
   }
 
     const opportunit_y =()=>{
-      axios
-      .get("http://localhost:3002/api/opportunity", {
-        headers: headers
-      })
+      ApiServices.getOpportunity()
       .then((response) => {
-        console.log(response.data);
         const form = response.data.map(
           ({ Name, ProjectName, Status, Phone, Action, BidDate }) => ({
             Name: Name,
@@ -39,17 +37,13 @@ function Leads() {
             BidDate: BidDate,
           })
         );
-        console.log(form);
         setData(form);
       })
       .catch((error) => console.error("Error fetching data:", error));
     }
  
   const opportunity=()=>{
-      axios
-      .get("http://localhost:3002/api/opportunity", {
-        headers: headers
-      })
+    ApiServices.getOpportunity()
       .then((response) => {
         const form = response.data.filter(({ IsCustomer }) => IsCustomer === true) 
         .map(({ Name, ProjectName, Status, Phone, Action, BidDate, IsCustomer }) => ({
@@ -62,7 +56,6 @@ function Leads() {
           isCustomer: IsCustomer,
         }));
         setData(form);
-       
       })
       .catch((error) => console.error("Error fetching data:", error));
   }
@@ -279,7 +272,7 @@ useEffect(()=>{
           <div>
             <div className="d-flex align-items-center my-2">
               <span>Search</span>
-              <input
+              <Form.Control
                 className="form-control mx-2"
                 type="search"
                 placeholder="Search"

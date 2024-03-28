@@ -3,9 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Offcanvasop from "./Offcanvas";
-
 import { Link } from 'react-router-dom';
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -63,21 +61,15 @@ function Header_2() {
               >
                 Coustmers
               </button>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu px-2">
                 <li>
-                  <a class="dropdown-item" href="action">
-                    Action
-                  </a>
+                  <Link to="/dashboard/customermanagement" className="text-decoration-none text-dark">Customer Management</Link>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="another">
-                    Another action
-                  </a>
+                <Link to="/dashboard/customermanagement" className="text-decoration-none text-dark">Customer Management</Link>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="sometimes">
-                    Something else here
-                  </a>
+                <Link to="/dashboard/customermanagement" className="text-decoration-none text-dark">Customer Management</Link>
                 </li>
               </ul>
             </div>
@@ -209,14 +201,14 @@ function Header_2() {
           <div className="mt-2"><span className="mx-3">Jobs</span></div>
           <div class="dropdown">
               <button
-                class="btn btn-sky border-0 dropdown-toggle"
+                class="btn btn-sky border-0 dropdown-toggle "
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Accounting
+                Accountingh
               </button>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu " style={{position:"fixed !important" ,inset:"90px auto auto 90px !important"}}>
                 <li>
                   <a class="dropdown-item" href="/action">
                     Action
@@ -245,17 +237,17 @@ function Header_2() {
               </button>
               <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/action">
                     Action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/another">
                     Another action
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="/something">
                     Something else here
                   </a>
                 </li>
