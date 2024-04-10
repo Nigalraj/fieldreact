@@ -26,8 +26,14 @@ const ApiServices ={
     loginData:(values)=>{
         return instance.post("/api/users/login",values);
     },
+    RegisterData:(values)=>{
+        return instance.post("/api/users",values);
+    },
     getCalendar:()=>{
         return instance.get("/api/calender");  
+    },
+    getAllUser:()=>{
+        return instance.get("/api/users");
     }
 }
 

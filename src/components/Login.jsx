@@ -1,15 +1,17 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import { Form, Button, FormGroup, FormCheck, Row, Col, Container } from "react-bootstrap";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from "react-router-dom";
-import Header from "./Header";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 import ApiServices from "../Constants/ApiService";
+import Header from "./Header";
 
-function Login() {
-  
+const Login=() =>{
+
+  const [email,setEmail] = useState([]);
+
   const formik = useFormik({
     initialValues: {
       Email: "",
@@ -23,15 +25,15 @@ function Login() {
     onSubmit: async (values) => {
       try {
         const response = await ApiServices.loginData(values);
+        localStorage.setItem('email',values.Email)
         if(response.status === 200)
         {
-          const { accessToken, referenceToken } = response.data;
+          const { accessToken, referenceToken} = response.data;
           localStorage.setItem('accessToken', accessToken);
           localStorage.setItem('refreshToken', referenceToken);
           window.location.href="/dashboard";
         }
-      } catch (error) {
-        
+      } catch (error) { 
         Swal.fire({
           icon: "warning",
           title: "Check it!",
@@ -48,7 +50,7 @@ function Login() {
 
   return (
     <>
-    <Header />
+    <Header/>
     <Container>
     <div>
       <div className=" mt-5">
@@ -57,7 +59,7 @@ function Login() {
           <Form onSubmit={formik.handleSubmit} className="text-white py-3">
               <span className="Account fs-5 fw-bold"> SIGN IN</span>
               <Form.Group controlId="Email">
-                <Form.Label>Email*</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
                   name="Email"

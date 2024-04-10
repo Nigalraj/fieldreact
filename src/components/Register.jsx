@@ -1,13 +1,13 @@
 import React from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { Icon } from "@iconify/react";
-import axios from "axios";
 import Faqs from "./Faq";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Footer from "./Footer";
 import Header from "./Header";
 import Swal from "sweetalert2";
+import ApiServices from "../Constants/ApiService";
 
 function Register() {
   const validationSchema = Yup.object().shape({
@@ -44,11 +44,8 @@ function Register() {
     validationSchema: validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await axios.post(
-          "http://localhost:3002/api/users",
-          values
-        );
-        console.log(response, "hi");
+        const response = await ApiServices.RegisterData(values)
+  
         await Swal.fire({
           icon: "success",
           title: "Oops...",

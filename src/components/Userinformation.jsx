@@ -1,11 +1,58 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { Icon } from "@iconify/react";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import ApiServices from "../Constants/ApiService";
+import Swal from "sweetalert2";
 
 const Userinformation = () => {
+  // console.log("gi");
+  const formik = useFormik({
+    initialValues:{
+      Firstname:"",
+      Lastname:"",
+      Email:"",
+      Password:"",
+      PhoneNumber:"",
+      Companyname:"IDC"
+    },
+    validationSchema:Yup.object({
+      Firstname:Yup.string().required("Require the First Name"),
+      Lastname:Yup.string().required("Require the Last Name"),
+      Email: Yup.string().email("Invalid email address").required("Require the Email"),
+      Password: Yup.string().required("Require the Password"),
+      PhoneNumber:Yup.string().required("Require the Phone Number")
+    }),
+    onSubmit:async(values)=>{
+      try{
+        const response = await ApiServices.RegisterData(values);
+        console.log(response,"dsd");
+       
+          await Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: "Create Add User Successfully",
+            confirmButtonText: "Ok",
+          });
+          window.location.href = "/dashboard/user";
+      }
+      catch(err)
+      {
+        await Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "Check the field correctly",
+          confirmButtonText: "Ok",
+        });
+        console.error("Register failed");
+      }
+    },
+  })
+
   return (
     <div className="mx-3 ">
-      <Form>
+      <Form onSubmit={formik.handleSubmit}>
         <Form.Group
           controlId="formDefaultLocation"
           className="row align-items-center mt-md-3"
@@ -29,7 +76,16 @@ const Userinformation = () => {
             <Form.Label className="pt-3">First Name</Form.Label>
           </div>
           <div className="col-md-5">
-            <Form.Control className="bg-light" />
+            <Form.Control className="bg-light" 
+            type="name"
+            name="Firstname"
+            values={formik.values.Firstname}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            />
+            {formik.touched.Firstname && formik.errors.Firstname ? (
+              <div className=" text-danger">{formik.errors.Firstname}</div>
+            ): null}
           </div>
         </Form.Group>
         <Form.Group
@@ -40,7 +96,15 @@ const Userinformation = () => {
             <Form.Label className="pt-3">Last Name</Form.Label>
           </div>
           <div className="col-md-5">
-            <Form.Control className="bg-light" />
+            <Form.Control className="bg-light"
+            type="name"
+            name="Lastname"
+            values={formik.values.Lastname}
+            onChange={formik.handleChange} 
+            onBlur={formik.handleBlur}/>
+            {formik.touched.Lastname && formik.errors.Lastname ? (
+              <div className="text-danger">{formik.errors.Lastname}</div>
+            ):null }
           </div>
         </Form.Group>
         <Form.Group
@@ -51,7 +115,16 @@ const Userinformation = () => {
             <Form.Label className="pt-3">Email/User Name</Form.Label>
           </div>
           <div className="col-md-5">
-            <Form.Control className="bg-light" />
+            <Form.Control className="bg-light"
+            type="email"
+            name="Email"
+            values={formik.values.Email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur} />
+
+            {formik.touched.Email && formik.errors.Email ? (
+              <div className="text-danger">{formik.errors.Email}</div>
+            ):null}
           </div>
         </Form.Group>
         <Form.Group
@@ -62,7 +135,16 @@ const Userinformation = () => {
             <Form.Label className="pt-3">Password</Form.Label>
           </div>
           <div className="col-md-5">
-            <Form.Control className="bg-light" />
+            <Form.Control className="bg-light" 
+            type="password"
+            name="Password"
+            values={formik.values.Password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            />
+            {formik.touched.Password && formik.errors.Password ? (
+              <div className="text-danger">{formik.errors.Password}</div>
+            ):null}
           </div>
         </Form.Group>
         <Form.Group
@@ -73,7 +155,15 @@ const Userinformation = () => {
             <Form.Label className="pt-3">Phone</Form.Label>
           </div>
           <div className="col-md-5">
-            <Form.Control className="bg-light" />
+            <Form.Control className="bg-light"
+            type="number"
+            name="PhoneNumber"
+            value={formik.values.PhoneNumber}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur} />
+             {formik.touched.PhoneNumber && formik.errors.PhoneNumber ? (
+              <div className="text-danger">{formik.errors.PhoneNumber}</div>
+            ):null}
           </div>
         </Form.Group>
         <Form.Group
@@ -367,7 +457,7 @@ const Userinformation = () => {
         </div>
         <hr/>
         <div className="d-flex justify-content-end">
-          <Button>Save</Button>
+          <Button type="submit">Save</Button>
           <Button variant="light" className="ms-2">Cancel</Button>
         </div>
       </Form>

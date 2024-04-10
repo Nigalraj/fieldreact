@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -11,22 +12,20 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [isNavOpen, setNavOpen] = useState(false);
+  const [color, setColor] = useState(true);
 
   const navLinks = [
     { href: "#action1", text: "SIGN UP" },
     { href: "#action2", text: "FEATURES" },
-    {
-      title: "INDUSTRIES",
-      items: [
-        { href: "#action3", text: "FLOORING" },
-        { href: "#action4", text: "ROOFING" },
-        { href: "#action5", text: "DRYWALL" },
-        { href: "#action6", text: "INSULATION" },
-      ],
-    },
-    { href: "#", text: "FAQS", disabled: true },
+    { title: "INDUSTRIES", items: [
+      { href: "#action3", text: "FLOORING" },
+      { href: "#action4", text: "ROOFING" },
+      { href: "#action5", text: "DRYWALL" },
+      { href: "#action6", text: "INSULATION" }
+    ]},
+    { href: "#", text: "FsAQS", disabled: true },
     { href: "#", text: "CONTACT US", disabled: true },
-    { href: "#", text: "LOGIN", disabled: true },
+    { href: "#", text: "LOGIN", disabled: true }
   ];
   const handleNavToggle = () => {
     setNavOpen(!isNavOpen);
@@ -76,39 +75,23 @@ function Header() {
             id="navbarScroll"
             className={isNavOpen ? "show" : ""}
           >
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              {navLinks.map((link, index) => {
-                if (link.title) {
-                  return (
-                    <NavDropdown
-                      key={index}
-                      title={link.title}
-                      id="navbarScrollingDropdown"
-                    >
-                      {link.items.map((item, idx) => (
-                        <NavDropdown.Item key={idx} href={item.href}>
-                          {item.text}
-                        </NavDropdown.Item>
-                      ))}
-                    </NavDropdown>
-                  );
-                } else {
-                  return (
-                    <Nav.Link
-                      key={index}
-                      href={link.href}
-                      disabled={link.disabled}
-                    >
-                      {link.text}
-                    </Nav.Link>
-                  );
-                }
-              })}
-            </Nav>
+            <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
+  {navLinks.map((link, index) => {
+    if (link.title) {
+      return (
+        <NavDropdown key={index} title={link.title} id="navbarScrollingDropdown">
+          {link.items.map((item, idx) => (
+            <NavDropdown.Item key={idx} href={item.href}>{item.text}</NavDropdown.Item>
+          ))}
+        </NavDropdown>
+      );
+    } else {
+      return (
+        <Nav.Link key={index} href={link.href} disabled={link.disabled}>{link.text}</Nav.Link>
+      );
+    }
+  })}
+</Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -146,17 +129,17 @@ function Header() {
                     <div
                       className={`dropdown-menu ${showDropdown ? "show" : ""}`}
                     >
-                      <a className="dropdown-item" href="/floor">
+                      <a className="dropdown-item" href="#">
                         FLOORING
                       </a>
-                      <a className="dropdown-item" href="/roof">
+                      <a className="dropdown-item" href="#">
                         ROOFING
                       </a>
-                      <a className="dropdown-item" href="/dry">
+                      <a className="dropdown-item" href="#">
                         DRYWALL
                       </a>
-                      <a className="dropdown-item" href="/insult">
-                        INSULATION
+                      <a className="dropdown-item" href="#">
+                        INSULATION 
                       </a>
                     </div>
                   </div>
@@ -165,28 +148,24 @@ function Header() {
               <div className="d-flex justify-content-between">
                 <span className="mx-5">FAQS</span>
                 <span>CONTACT US</span>
-                <span>
-                  <Link
-                    to="/"
-                    className={`mx-5 px-3 py-1 rounded-5 text-decoration-none text-dark ${
-                      location.pathname === "/" ? "active_2 text-white" : ""
-                    }`}
-                  >
-                    LOGIN
-                  </Link>
-                </span>
-                <span>
-                  <Link
-                    to="/register"
-                    className={`px-3 py-1  text-dark rounded-5 text-decoration-none ${
-                      location.pathname === "/register"
-                        ? "active_2 text-white"
-                        : ""
-                    }`}
-                  >
-                    SIGN UP
-                  </Link>
-                </span>
+                <Link
+                  to="/"
+                  className={`mx-5 px-3 py-1 rounded-5 text-decoration-none text-dark ${
+                    location.pathname === "/" ? "bg-success text-white" : ""
+                  }`}
+                >
+                  LOGIN
+                </Link> 
+                <Link
+                  to="/register"
+                  className={`px-3 py-1  text-dark rounded-5 text-decoration-none ${
+                    location.pathname === "/register"
+                      ? "bg-success text-white"
+                      : ""
+                  }`}
+                >
+                  SIGN UP
+                </Link>
               </div>
             </div>
           </div>

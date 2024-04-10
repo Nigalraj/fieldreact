@@ -17,6 +17,7 @@ import User from "./components/User";
 import Adduser from "./components/Adduser";
 import CustomerManagement from "./components/CustomerManagement";
 import Addcustomer from "./components/Addcustomer";
+import Task from "./components/Task";
 
 function App() {
   const access = localStorage.getItem("accessToken");
@@ -27,7 +28,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Registers />} />
+        <Route path="/register" element={<Registers />}/>
         <Route path="/dashboard" element={<Layout />}>
           <Route path="/dashboard" element={<PrivateRoute isSignedIn={isSignedIn}><Second /></PrivateRoute>} />
           <Route path="/dashboard/start" element={<PrivateRoute isSignedIn={isSignedIn}><Lead /></PrivateRoute>} />
@@ -41,6 +42,7 @@ function App() {
           <Route path="/dashboard/user/createuser" element={<PrivateRoute isSignedIn={isSignedIn}><Adduser/></PrivateRoute>} />
           <Route path="/dashboard/customermanagement" element={<PrivateRoute isSignedIn={isSignedIn}><CustomerManagement/></PrivateRoute>} />
           <Route path="/dashboard/customermanagement/addcustomer" element={<PrivateRoute isSignedIn={isSignedIn}><Addcustomer/></PrivateRoute>} />
+          <Route path="/dashboard/tasks" element={<PrivateRoute isSignedIn={isSignedIn}><Task/></PrivateRoute>} />
         </Route>
       </Routes>
     </BrowserRouter>

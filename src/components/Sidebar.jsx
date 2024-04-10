@@ -2,11 +2,15 @@ import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
+
+
   return (
-    <div className="ms-0 w-100">
+    <div className="ms-0 w-100 h-100">
         <div className="d-flex flex-column py-2 align-items-center">
-          <Icon icon="clarity:tasks-line" className="" width="40" height="35"/>
+         <Link to="/dashboard/tasks" className="d-flex text-dark flex-column align-items-center text-decoration-none">
+         <Icon icon="clarity:tasks-line" className="" width="40" height="35"/>
           <span className="text-center">Tasks</span>
+          </Link>
       </div>
       <div className="d-flex flex-column  py-2  align-items-center mx-1">
       <Link to="/dashboard/calendar" className="d-flex text-dark flex-column align-items-center text-decoration-none">
